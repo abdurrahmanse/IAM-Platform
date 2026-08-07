@@ -9,7 +9,7 @@ RUN apk update && apk add --no-cache libc6-compat
 WORKDIR /app
 RUN npm install turbo --global
 COPY . .
-RUN turbo prune @iam/website --docker
+RUN turbo prune @iam/admin --docker
 
 FROM base AS installer
 RUN apk update && apk add --no-cache libc6-compat
@@ -21,7 +21,7 @@ RUN pnpm install --frozen-lockfile
 
 # Build the project
 COPY --from=builder /app/out/full/ .
-RUN pnpm turbo run build --filter=@iam/website...
+RUN pnpm turbo run build --filter=@iam/admin...
 
 FROM base AS runner
 WORKDIR /app
@@ -31,18 +31,18 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 USER nextjs
 
-COPY --from=installer /app/apps/website/next.config.ts .
-COPY --from=installer /app/apps/website/package.json .
+COPY --from=installer /app/apps/admin/next.config.ts .
+COPY --from=installer /app/apps/admin/package.json .
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
-COPY --from=installer --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
+COPY --from=installer --chown=nextjs:nodejs /app/apps/admin/.next/standalone ./
+COPY --from=installer --chown=nextjs:nodejs /app/apps/admin/.next/static ./apps/admin/.next/static
 # public is optional, but if it doesn't exist it will fail.
-# COPY --from=installer --chown=nextjs:nodejs /app/apps/website/public ./apps/website/public
+# COPY --from=installer --chown=nextjs:nodejs /app/apps/admin/public ./apps/admin/public
 
 EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "apps/website/server.js"]
+CMD ["node", "apps/admin/server.js"]
