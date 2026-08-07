@@ -19,7 +19,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            "flex h-10 w-full rounded-xl border border-white/20 bg-white/20 backdrop-blur-md px-4 py-2 text-sm text-gray-900 shadow-[inset_0_1px_2px_rgba(0,0,0,0.05),0_4px_12px_rgba(0,0,0,0.02)] transition-all duration-300 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500/80 hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 focus-visible:border-transparent focus-visible:bg-white/40 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-black/20 dark:text-gray-100 dark:placeholder:text-gray-400/80 dark:hover:bg-black/30 dark:focus-visible:bg-black/40",
+            "flex h-10 w-full rounded-xl border border-white/40 bg-white/60 backdrop-blur-xl px-4 py-2 text-sm text-gray-900 shadow-sm transition-all duration-300 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-gray-500/80 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50 focus-visible:border-transparent focus-visible:bg-white disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-black/40 dark:text-gray-100 dark:placeholder:text-gray-400/80 dark:hover:bg-black/50 dark:focus-visible:bg-black/60",
             startIcon ? "pl-10" : "",
             endIcon ? "pr-10" : "",
             className
