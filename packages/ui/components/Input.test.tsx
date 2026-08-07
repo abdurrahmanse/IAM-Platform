@@ -8,7 +8,7 @@ describe("Input component", () => {
     render(<Input placeholder="Enter text" />)
     const input = screen.getByPlaceholderText("Enter text")
     expect(input).toBeInTheDocument()
-    expect(input).toHaveClass("flex", "h-9", "w-full", "rounded-md") // verify core classes exist
+    expect(input).toHaveClass("flex", "h-11", "w-full", "rounded-lg") // verify core classes exist
   })
 
   it("passes standard HTML attributes like type and disabled", () => {
