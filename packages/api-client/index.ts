@@ -1,1 +1,2 @@
-export const api_client = "api-client";
+export * from "./src/client"
+export * from "./src/QueryProvider"
