@@ -4,6 +4,10 @@
   "private": true,
   "main": "index.ts",
   "types": "index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./styles/globals.css": "./styles/globals.css"
+  },
   "scripts": {
     "lint": "eslint index.ts",
     "typecheck": "tsc --noEmit"
