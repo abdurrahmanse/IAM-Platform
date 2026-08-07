@@ -1,0 +1,12 @@
+{
+  "name": "@iam/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "python3 -m venv .venv && .venv/bin/pip install -r requirements.txt",
+    "dev": ".venv/bin/uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "build": "echo 'No build step required for FastAPI'",
+    "lint": "echo 'Add ruff/flake8 here later'",
+    "test": ".venv/bin/pytest"
+  }
+}

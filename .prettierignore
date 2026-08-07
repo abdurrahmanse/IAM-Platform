@@ -1,0 +1,7 @@
+.next
+.venv
+dist
+build
+node_modules
+coverage
+.turbo
