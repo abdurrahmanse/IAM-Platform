@@ -1,3530 +1,5022 @@
-#  Development Plan
+# 04 DEVELOPMENT ROADMAP
 
-## Phase 00 — Project Foundation
+> This roadmap defines the exact engineering requirements, architectures, and AI prompts required to build the IAM Platform over 26 phases.
 
-### [SP-00.01] Project Structure
+## Phase 00 — Scaffold & Hello World
 
-**TASK ID:** SP-00.01
-**PHASE / SUB-PHASE:** 00 — Project Foundation / 00.01 Project Structure
+### 1. Objective
+Initialize the Turborepo monorepo and establish the base Next.js and FastAPI architectures.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 2. Business Goal
+Provide a clean, enterprise-grade workspace that allows independent frontend and backend scaling.
 
-**TASK:**
-Implement the minimal required functionality for: Project Structure.
+### 3. Features
+Turborepo workspace, pnpm setup, FastAPI base app, Next.js proxy, CORS configuration.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Project Structure within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 5. Sub-phases (minimum 5)
+- SP-00.01: Turborepo & pnpm Workspace initialization
+- SP-00.02: FastAPI Backend base setup
+- SP-00.03: Next.js Web App base setup
+- SP-00.04: Next.js Admin App base setup
+- SP-00.05: API Proxy & CORS Configuration
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Project Structure' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-### [SP-00.02] Monorepo Configuration
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**TASK ID:** SP-00.02
-**PHASE / SUB-PHASE:** 00 — Project Foundation / 00.02 Monorepo Configuration
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 10. API Design
+FastAPI health check endpoint `/api/v1/health`.
 
-**TASK:**
-Implement the minimal required functionality for: Monorepo Configuration.
+### 11. Database Tasks
+No DB required yet. Scaffold Alembic directory.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Monorepo Configuration within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 12. UI Tasks
+Scaffold `apps/admin`, `apps/portal`, `apps/website`. Render 'Hello World'.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 13. UX Tasks
+No complex UX yet, establish Tailwind typography base.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Monorepo Configuration' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 14. Security Tasks
+Configure strict CORS allowing only localhost for development.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 15. Testing Tasks
+Vitest base config. Pytest base config with `TestClient`.
 
-### [SP-00.03] Workspace Setup
+### 16. DevOps Tasks
+Commitlint, Husky, Prettier, and ESLint configurations.
 
-**TASK ID:** SP-00.03
-**PHASE / SUB-PHASE:** 00 — Project Foundation / 00.03 Workspace Setup
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**TASK:**
-Implement the minimal required functionality for: Workspace Setup.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Workspace Setup within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 20. Dependencies
+Completion of Phase 00.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Workspace Setup' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+---
 
-### [SP-00.04] Code Quality Tools
+### Sub-Phase Implementation Prompts
 
-**TASK ID:** SP-00.04
-**PHASE / SUB-PHASE:** 00 — Project Foundation / 00.04 Code Quality Tools
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-00.01] Turborepo & pnpm Workspace initialization
 
-**TASK:**
-Implement the minimal required functionality for: Code Quality Tools.
+```text
+TASK ID: SP-00.01
+PHASE / SUB-PHASE: 00 — Scaffold & Hello World / 00.01 Turborepo & pnpm Workspace initialization
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Code Quality Tools within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: Turborepo & pnpm Workspace initialization.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Code Quality Tools' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 00.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-00.05] Project Documentation
+#### [SP-00.02] FastAPI Backend base setup
 
-**TASK ID:** SP-00.05
-**PHASE / SUB-PHASE:** 00 — Project Foundation / 00.05 Project Documentation
+```text
+TASK ID: SP-00.02
+PHASE / SUB-PHASE: 00 — Scaffold & Hello World / 00.02 FastAPI Backend base setup
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Project Documentation.
+TASK:
+Design and implement the engineering requirements for: FastAPI Backend base setup.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Project Documentation within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 00.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Project Documentation' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-00.03] Next.js Web App base setup
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-00.03
+PHASE / SUB-PHASE: 00 — Scaffold & Hello World / 00.03 Next.js Web App base setup
 
-## Phase 01 — Infrastructure & DevOps
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-01.01] Docker
+TASK:
+Design and implement the engineering requirements for: Next.js Web App base setup.
 
-**TASK ID:** SP-01.01
-**PHASE / SUB-PHASE:** 01 — Infrastructure & DevOps / 01.01 Docker
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 00.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Docker.
+#### [SP-00.04] Next.js Admin App base setup
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Docker within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-00.04
+PHASE / SUB-PHASE: 00 — Scaffold & Hello World / 00.04 Next.js Admin App base setup
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Docker' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: Next.js Admin App base setup.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 00.
 
-### [SP-01.02] Docker Compose
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-01.02
-**PHASE / SUB-PHASE:** 01 — Infrastructure & DevOps / 01.02 Docker Compose
+#### [SP-00.05] API Proxy & CORS Configuration
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-00.05
+PHASE / SUB-PHASE: 00 — Scaffold & Hello World / 00.05 API Proxy & CORS Configuration
 
-**TASK:**
-Implement the minimal required functionality for: Docker Compose.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Docker Compose within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: API Proxy & CORS Configuration.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 00.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Docker Compose' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+## Phase 01 — Core UI & Shared Components
 
-### [SP-01.03] Environment Configuration
+### 1. Objective
+Establish the foundational design system using Tailwind and shadcn/ui within a shared workspace package.
 
-**TASK ID:** SP-01.03
-**PHASE / SUB-PHASE:** 01 — Infrastructure & DevOps / 01.03 Environment Configuration
+### 2. Business Goal
+Ensure absolute visual consistency across all portals and accelerate future UI development.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 3. Features
+Shared Button, Input, Modal, Dialog components. Base application layouts with Sidebar/Header.
 
-**TASK:**
-Implement the minimal required functionality for: Environment Configuration.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Environment Configuration within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 5. Sub-phases (minimum 5)
+- SP-01.01: Tailwind CSS & Global styles
+- SP-01.02: UI Package: Button & Input components
+- SP-01.03: UI Package: Modal & Dialog components
+- SP-01.04: Application Layouts (Sidebar, Header, Footer)
+- SP-01.05: React Query & Axios Client setup
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Environment Configuration' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-### [SP-01.04] GitHub Actions
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**TASK ID:** SP-01.04
-**PHASE / SUB-PHASE:** 01 — Infrastructure & DevOps / 01.04 GitHub Actions
+### 10. API Design
+N/A
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 11. Database Tasks
+N/A
 
-**TASK:**
-Implement the minimal required functionality for: GitHub Actions.
+### 12. UI Tasks
+Build purely presentational (dumb) components in `packages/ui`.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for GitHub Actions within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 13. UX Tasks
+Implement active states, focus rings for keyboard navigation, and dark mode toggles.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 14. Security Tasks
+Ensure forms prevent XSS via React default escaping.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'GitHub Actions' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 15. Testing Tasks
+Component testing using Vitest + React Testing Library.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 16. DevOps Tasks
+Ensure `packages/ui` builds and exports correctly to `apps/*`.
 
-### [SP-01.05] Secrets Management
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**TASK ID:** SP-01.05
-**PHASE / SUB-PHASE:** 01 — Infrastructure & DevOps / 01.05 Secrets Management
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**TASK:**
-Implement the minimal required functionality for: Secrets Management.
+### 20. Dependencies
+Completion of Phase 00.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Secrets Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Secrets Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+---
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### Sub-Phase Implementation Prompts
 
-## Phase 02 — Database Architecture
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-### [SP-02.01] PostgreSQL Setup
+#### [SP-01.01] Tailwind CSS & Global styles
 
-**TASK ID:** SP-02.01
-**PHASE / SUB-PHASE:** 02 — Database Architecture / 02.01 PostgreSQL Setup
+```text
+TASK ID: SP-01.01
+PHASE / SUB-PHASE: 01 — Core UI & Shared Components / 01.01 Tailwind CSS & Global styles
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: PostgreSQL Setup.
+TASK:
+Design and implement the engineering requirements for: Tailwind CSS & Global styles.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for PostgreSQL Setup within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 01.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'PostgreSQL Setup' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-01.02] UI Package: Button & Input components
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-01.02
+PHASE / SUB-PHASE: 01 — Core UI & Shared Components / 01.02 UI Package: Button & Input components
 
-### [SP-02.02] SQLAlchemy Models
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-02.02
-**PHASE / SUB-PHASE:** 02 — Database Architecture / 02.02 SQLAlchemy Models
+TASK:
+Design and implement the engineering requirements for: UI Package: Button & Input components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 01.
 
-**TASK:**
-Implement the minimal required functionality for: SQLAlchemy Models.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for SQLAlchemy Models within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-01.03] UI Package: Modal & Dialog components
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-01.03
+PHASE / SUB-PHASE: 01 — Core UI & Shared Components / 01.03 UI Package: Modal & Dialog components
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'SQLAlchemy Models' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: UI Package: Modal & Dialog components.
 
-### [SP-02.03] Alembic Migrations
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 01.
 
-**TASK ID:** SP-02.03
-**PHASE / SUB-PHASE:** 02 — Database Architecture / 02.03 Alembic Migrations
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-01.04] Application Layouts (Sidebar, Header, Footer)
 
-**TASK:**
-Implement the minimal required functionality for: Alembic Migrations.
+```text
+TASK ID: SP-01.04
+PHASE / SUB-PHASE: 01 — Core UI & Shared Components / 01.04 Application Layouts (Sidebar, Header, Footer)
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Alembic Migrations within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: Application Layouts (Sidebar, Header, Footer).
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Alembic Migrations' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 01.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-02.04] Database Indexing
+#### [SP-01.05] React Query & Axios Client setup
 
-**TASK ID:** SP-02.04
-**PHASE / SUB-PHASE:** 02 — Database Architecture / 02.04 Database Indexing
+```text
+TASK ID: SP-01.05
+PHASE / SUB-PHASE: 01 — Core UI & Shared Components / 01.05 React Query & Axios Client setup
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Database Indexing.
+TASK:
+Design and implement the engineering requirements for: React Query & Axios Client setup.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Database Indexing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 01.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Database Indexing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+## Phase 02 — Core Database Architecture
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 1. Objective
+Setup PostgreSQL, connection pooling, and the base SQLAlchemy ORM models.
 
-### [SP-02.05] Seed Data
+### 2. Business Goal
+Provide a highly reliable, high-performance data storage layer for the IAM platform.
 
-**TASK ID:** SP-02.05
-**PHASE / SUB-PHASE:** 02 — Database Architecture / 02.05 Seed Data
+### 3. Features
+Asyncpg integration, SQLAlchemy 2.0 Base class, Audit Mixins (created_at, updated_at).
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**TASK:**
-Implement the minimal required functionality for: Seed Data.
+### 5. Sub-phases (minimum 5)
+- SP-02.01: PostgreSQL setup & connection pooling
+- SP-02.02: Alembic Setup & Base Models definition
+- SP-02.03: Audit Mixins (created_at, updated_at)
+- SP-02.04: Soft Delete Mixins
+- SP-02.05: Seeder Script Setup
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Seed Data within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Seed Data' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-## Phase 03 — Core Backend Foundation
+### 10. API Design
+Create `get_db_session` dependency for FastAPI injection.
 
-### [SP-03.01] FastAPI Initialization
+### 11. Database Tasks
+Create SQLAlchemy `Base`, `TimestampMixin`, `SoftDeleteMixin`. Initialize Alembic.
 
-**TASK ID:** SP-03.01
-**PHASE / SUB-PHASE:** 03 — Core Backend Foundation / 03.01 FastAPI Initialization
+### 12. UI Tasks
+N/A
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 13. UX Tasks
+N/A
 
-**TASK:**
-Implement the minimal required functionality for: FastAPI Initialization.
+### 14. Security Tasks
+Use environment variables for DB connection strings. Never hardcode credentials.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for FastAPI Initialization within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 15. Testing Tasks
+Setup pytest fixtures with a clean test database and rollback after each test.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 16. DevOps Tasks
+Add `docker-compose.yml` for local PostgreSQL and pgAdmin.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'FastAPI Initialization' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-### [SP-03.02] Configuration System
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**TASK ID:** SP-03.02
-**PHASE / SUB-PHASE:** 03 — Core Backend Foundation / 03.02 Configuration System
+### 20. Dependencies
+Completion of Phase 01.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**TASK:**
-Implement the minimal required functionality for: Configuration System.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Configuration System within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+---
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### Sub-Phase Implementation Prompts
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Configuration System' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-02.01] PostgreSQL setup & connection pooling
 
-### [SP-03.03] Dependency Injection
+```text
+TASK ID: SP-02.01
+PHASE / SUB-PHASE: 02 — Core Database Architecture / 02.01 PostgreSQL setup & connection pooling
 
-**TASK ID:** SP-03.03
-**PHASE / SUB-PHASE:** 03 — Core Backend Foundation / 03.03 Dependency Injection
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: PostgreSQL setup & connection pooling.
 
-**TASK:**
-Implement the minimal required functionality for: Dependency Injection.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 02.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Dependency Injection within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-02.02] Alembic Setup & Base Models definition
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Dependency Injection' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-02.02
+PHASE / SUB-PHASE: 02 — Core Database Architecture / 02.02 Alembic Setup & Base Models definition
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-03.04] Global Exception Handling
+TASK:
+Design and implement the engineering requirements for: Alembic Setup & Base Models definition.
 
-**TASK ID:** SP-03.04
-**PHASE / SUB-PHASE:** 03 — Core Backend Foundation / 03.04 Global Exception Handling
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 02.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Global Exception Handling.
+#### [SP-02.03] Audit Mixins (created_at, updated_at)
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Global Exception Handling within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-02.03
+PHASE / SUB-PHASE: 02 — Core Database Architecture / 02.03 Audit Mixins (created_at, updated_at)
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Global Exception Handling' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: Audit Mixins (created_at, updated_at).
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 02.
 
-### [SP-03.05] Logging System
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-03.05
-**PHASE / SUB-PHASE:** 03 — Core Backend Foundation / 03.05 Logging System
+#### [SP-02.04] Soft Delete Mixins
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-02.04
+PHASE / SUB-PHASE: 02 — Core Database Architecture / 02.04 Soft Delete Mixins
 
-**TASK:**
-Implement the minimal required functionality for: Logging System.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Logging System within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: Soft Delete Mixins.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 02.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Logging System' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-02.05] Seeder Script Setup
 
-## Phase 04 — Shared Packages
+```text
+TASK ID: SP-02.05
+PHASE / SUB-PHASE: 02 — Core Database Architecture / 02.05 Seeder Script Setup
 
-### [SP-04.01] API Client
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-04.01
-**PHASE / SUB-PHASE:** 04 — Shared Packages / 04.01 API Client
+TASK:
+Design and implement the engineering requirements for: Seeder Script Setup.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 02.
 
-**TASK:**
-Implement the minimal required functionality for: API Client.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for API Client within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+## Phase 03 — Local Auth (Email & Password)
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 1. Objective
+Implement the core registration and login flows using JWT.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'API Client' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 2. Business Goal
+Allow users to securely create accounts and authenticate into the platform.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 3. Features
+Argon2 password hashing, Access/Refresh JWTs, User Dashboard.
 
-### [SP-04.02] UI Library
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**TASK ID:** SP-04.02
-**PHASE / SUB-PHASE:** 04 — Shared Packages / 04.02 UI Library
+### 5. Sub-phases (minimum 5)
+- SP-03.01: DB: User Model & Migrations
+- SP-03.02: API: Registration Endpoint
+- SP-03.03: UI: Registration Page & Zod Validation
+- SP-03.04: API: Login Endpoint & JWT Generation
+- SP-03.05: UI: Login Page & Zustand State
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**TASK:**
-Implement the minimal required functionality for: UI Library.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for UI Library within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'UI Library' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 10. API Design
+POST `/auth/register`, POST `/auth/login`. Return standard JSON envelope.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 11. Database Tasks
+Create `User` model with `email`, `hashed_password`, `is_active` fields.
 
-### [SP-04.03] Auth SDK
+### 12. UI Tasks
+Build Register and Login forms using React Hook Form and Zod.
 
-**TASK ID:** SP-04.03
-**PHASE / SUB-PHASE:** 04 — Shared Packages / 04.03 Auth SDK
+### 13. UX Tasks
+Show inline validation errors. Disable submit button while `isPending`.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 14. Security Tasks
+Store Access Token in memory/React State. Store Refresh Token in HttpOnly Secure cookie.
 
-**TASK:**
-Implement the minimal required functionality for: Auth SDK.
+### 15. Testing Tasks
+Mock API Client responses for successful/failed logins in UI tests.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Auth SDK within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 16. DevOps Tasks
+Ensure JWT_SECRET is loaded from secure environment variables.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Auth SDK' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-### [SP-04.04] Shared Types
+### 20. Dependencies
+Completion of Phase 02.
 
-**TASK ID:** SP-04.04
-**PHASE / SUB-PHASE:** 04 — Shared Packages / 04.04 Shared Types
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**TASK:**
-Implement the minimal required functionality for: Shared Types.
+---
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Shared Types within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### Sub-Phase Implementation Prompts
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Shared Types' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-03.01] DB: User Model & Migrations
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-03.01
+PHASE / SUB-PHASE: 03 — Local Auth (Email & Password) / 03.01 DB: User Model & Migrations
 
-### [SP-04.05] Validation Library
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-04.05
-**PHASE / SUB-PHASE:** 04 — Shared Packages / 04.05 Validation Library
+TASK:
+Design and implement the engineering requirements for: DB: User Model & Migrations.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 03.
 
-**TASK:**
-Implement the minimal required functionality for: Validation Library.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Validation Library within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-03.02] API: Registration Endpoint
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-03.02
+PHASE / SUB-PHASE: 03 — Local Auth (Email & Password) / 03.02 API: Registration Endpoint
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Validation Library' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: API: Registration Endpoint.
 
-## Phase 05 — Authentication
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 03.
 
-### [SP-05.01] Registration
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-05.01
-**PHASE / SUB-PHASE:** 05 — Authentication / 05.01 Registration
+#### [SP-03.03] UI: Registration Page & Zod Validation
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-03.03
+PHASE / SUB-PHASE: 03 — Local Auth (Email & Password) / 03.03 UI: Registration Page & Zod Validation
 
-**TASK:**
-Implement the minimal required functionality for: Registration.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Registration within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: UI: Registration Page & Zod Validation.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 03.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Registration' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-03.04] API: Login Endpoint & JWT Generation
 
-### [SP-05.02] Login
+```text
+TASK ID: SP-03.04
+PHASE / SUB-PHASE: 03 — Local Auth (Email & Password) / 03.04 API: Login Endpoint & JWT Generation
 
-**TASK ID:** SP-05.02
-**PHASE / SUB-PHASE:** 05 — Authentication / 05.02 Login
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: API: Login Endpoint & JWT Generation.
 
-**TASK:**
-Implement the minimal required functionality for: Login.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 03.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Login within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-03.05] UI: Login Page & Zustand State
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Login' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-03.05
+PHASE / SUB-PHASE: 03 — Local Auth (Email & Password) / 03.05 UI: Login Page & Zustand State
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-05.03] Forgot Password
+TASK:
+Design and implement the engineering requirements for: UI: Login Page & Zustand State.
 
-**TASK ID:** SP-05.03
-**PHASE / SUB-PHASE:** 05 — Authentication / 05.03 Forgot Password
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 03.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Forgot Password.
+## Phase 04 — Email Verification Flow
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Forgot Password within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 1. Objective
+Require users to verify their email address before accessing the platform.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 2. Business Goal
+Prevent spam accounts and ensure a high-quality user base.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Forgot Password' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 3. Features
+SMTP integration, Verification Token generation, Email check UI.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-### [SP-05.04] Email Verification
+### 5. Sub-phases (minimum 5)
+- SP-04.01: DB: Verification Token Model
+- SP-04.02: API: SMTP Integration & Email Service
+- SP-04.03: UI: Check Email Screen
+- SP-04.04: API: Verify Token Endpoint
+- SP-04.05: UI: Verification Success Page
 
-**TASK ID:** SP-05.04
-**PHASE / SUB-PHASE:** 05 — Authentication / 05.04 Email Verification
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**TASK:**
-Implement the minimal required functionality for: Email Verification.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Email Verification within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 10. API Design
+Send email via SMTP on registration. POST `/auth/verify-email`.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Email Verification' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 11. Database Tasks
+Create `VerificationToken` model linked to `User`.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 12. UI Tasks
+Create 'Check your Email' page and 'Verification Success' redirect.
 
-### [SP-05.05] Phone Verification
+### 13. UX Tasks
+Provide a 'Resend Email' button with a 60-second cooldown.
 
-**TASK ID:** SP-05.05
-**PHASE / SUB-PHASE:** 05 — Authentication / 05.05 Phone Verification
+### 14. Security Tasks
+Tokens must expire in 24 hours. Delete token after single use.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 15. Testing Tasks
+Mock SMTP server in tests to ensure emails are dispatched.
 
-**TASK:**
-Implement the minimal required functionality for: Phone Verification.
+### 16. DevOps Tasks
+Provide dummy SMTP credentials (e.g., MailHog) in local docker-compose.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Phone Verification within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Phone Verification' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 20. Dependencies
+Completion of Phase 03.
 
-## Phase 06 — Identity Management
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-### [SP-06.01] Profile Management
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**TASK ID:** SP-06.01
-**PHASE / SUB-PHASE:** 06 — Identity Management / 06.01 Profile Management
+---
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### Sub-Phase Implementation Prompts
 
-**TASK:**
-Implement the minimal required functionality for: Profile Management.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Profile Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-04.01] DB: Verification Token Model
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-04.01
+PHASE / SUB-PHASE: 04 — Email Verification Flow / 04.01 DB: Verification Token Model
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Profile Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: DB: Verification Token Model.
 
-### [SP-06.02] Identity Verification
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 04.
 
-**TASK ID:** SP-06.02
-**PHASE / SUB-PHASE:** 06 — Identity Management / 06.02 Identity Verification
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-04.02] API: SMTP Integration & Email Service
 
-**TASK:**
-Implement the minimal required functionality for: Identity Verification.
+```text
+TASK ID: SP-04.02
+PHASE / SUB-PHASE: 04 — Email Verification Flow / 04.02 API: SMTP Integration & Email Service
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Identity Verification within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: API: SMTP Integration & Email Service.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Identity Verification' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 04.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-06.03] Contact Management
+#### [SP-04.03] UI: Check Email Screen
 
-**TASK ID:** SP-06.03
-**PHASE / SUB-PHASE:** 06 — Identity Management / 06.03 Contact Management
+```text
+TASK ID: SP-04.03
+PHASE / SUB-PHASE: 04 — Email Verification Flow / 04.03 UI: Check Email Screen
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Contact Management.
+TASK:
+Design and implement the engineering requirements for: UI: Check Email Screen.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Contact Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 04.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Contact Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-04.04] API: Verify Token Endpoint
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-04.04
+PHASE / SUB-PHASE: 04 — Email Verification Flow / 04.04 API: Verify Token Endpoint
 
-### [SP-06.04] Avatar Management
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-06.04
-**PHASE / SUB-PHASE:** 06 — Identity Management / 06.04 Avatar Management
+TASK:
+Design and implement the engineering requirements for: API: Verify Token Endpoint.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 04.
 
-**TASK:**
-Implement the minimal required functionality for: Avatar Management.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Avatar Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-04.05] UI: Verification Success Page
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-04.05
+PHASE / SUB-PHASE: 04 — Email Verification Flow / 04.05 UI: Verification Success Page
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Avatar Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: UI: Verification Success Page.
 
-### [SP-06.05] Account Status
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 04.
 
-**TASK ID:** SP-06.05
-**PHASE / SUB-PHASE:** 06 — Identity Management / 06.05 Account Status
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+## Phase 05 — Password Reset Flow
 
-**TASK:**
-Implement the minimal required functionality for: Account Status.
+### 1. Objective
+Design and implement secure Password Reset functionality.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Account Status within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Password Reset capabilities.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 3. Features
+Full stack implementation of Password Reset, from DB to UI.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Account Status' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 5. Sub-phases (minimum 5)
+- SP-05.01: DB: Models & Migrations for Password Reset
+- SP-05.02: API: Service Layer logic for Password Reset
+- SP-05.03: API: Route Controllers for Password Reset
+- SP-05.04: UI: API Client Hooks & State for Password Reset
+- SP-05.05: UI: React Components & Validation for Password Reset
 
-## Phase 07 — User Management
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-### [SP-07.01] User CRUD
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**TASK ID:** SP-07.01
-**PHASE / SUB-PHASE:** 07 — User Management / 07.01 User CRUD
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**TASK:**
-Implement the minimal required functionality for: User CRUD.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Password Reset logic.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for User CRUD within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Password Reset.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Password Reset.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'User CRUD' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-### [SP-07.02] User Search
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**TASK ID:** SP-07.02
-**PHASE / SUB-PHASE:** 07 — User Management / 07.02 User Search
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**TASK:**
-Implement the minimal required functionality for: User Search.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for User Search within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 20. Dependencies
+Completion of Phase 04.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'User Search' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-### [SP-07.03] User Filtering
+---
 
-**TASK ID:** SP-07.03
-**PHASE / SUB-PHASE:** 07 — User Management / 07.03 User Filtering
+### Sub-Phase Implementation Prompts
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**TASK:**
-Implement the minimal required functionality for: User Filtering.
+#### [SP-05.01] DB: Models & Migrations for Password Reset
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for User Filtering within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-05.01
+PHASE / SUB-PHASE: 05 — Password Reset Flow / 05.01 DB: Models & Migrations for Password Reset
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'User Filtering' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Password Reset.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 05.
 
-### [SP-07.04] Bulk Operations
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-07.04
-**PHASE / SUB-PHASE:** 07 — User Management / 07.04 Bulk Operations
+#### [SP-05.02] API: Service Layer logic for Password Reset
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-05.02
+PHASE / SUB-PHASE: 05 — Password Reset Flow / 05.02 API: Service Layer logic for Password Reset
 
-**TASK:**
-Implement the minimal required functionality for: Bulk Operations.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Bulk Operations within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Password Reset.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 05.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Bulk Operations' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-05.03] API: Route Controllers for Password Reset
 
-### [SP-07.05] User Import/Export
+```text
+TASK ID: SP-05.03
+PHASE / SUB-PHASE: 05 — Password Reset Flow / 05.03 API: Route Controllers for Password Reset
 
-**TASK ID:** SP-07.05
-**PHASE / SUB-PHASE:** 07 — User Management / 07.05 User Import/Export
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Password Reset.
 
-**TASK:**
-Implement the minimal required functionality for: User Import/Export.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 05.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for User Import/Export within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-05.04] UI: API Client Hooks & State for Password Reset
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'User Import/Export' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-05.04
+PHASE / SUB-PHASE: 05 — Password Reset Flow / 05.04 UI: API Client Hooks & State for Password Reset
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-## Phase 08 — Role Management
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Password Reset.
 
-### [SP-08.01] System Roles
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 05.
 
-**TASK ID:** SP-08.01
-**PHASE / SUB-PHASE:** 08 — Role Management / 08.01 System Roles
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-05.05] UI: React Components & Validation for Password Reset
 
-**TASK:**
-Implement the minimal required functionality for: System Roles.
+```text
+TASK ID: SP-05.05
+PHASE / SUB-PHASE: 05 — Password Reset Flow / 05.05 UI: React Components & Validation for Password Reset
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for System Roles within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Password Reset.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'System Roles' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 05.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-08.02] Custom Roles
+## Phase 06 — Profile Management & Avatar
 
-**TASK ID:** SP-08.02
-**PHASE / SUB-PHASE:** 08 — Role Management / 08.02 Custom Roles
+### 1. Objective
+Design and implement secure Profile Management functionality.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Profile Management capabilities.
 
-**TASK:**
-Implement the minimal required functionality for: Custom Roles.
+### 3. Features
+Full stack implementation of Profile Management, from DB to UI.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Custom Roles within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 5. Sub-phases (minimum 5)
+- SP-06.01: DB: Models & Migrations for Profile Management
+- SP-06.02: API: Service Layer logic for Profile Management
+- SP-06.03: API: Route Controllers for Profile Management
+- SP-06.04: UI: API Client Hooks & State for Profile Management
+- SP-06.05: UI: React Components & Validation for Profile Management
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Custom Roles' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-### [SP-08.03] Role Hierarchy
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**TASK ID:** SP-08.03
-**PHASE / SUB-PHASE:** 08 — Role Management / 08.03 Role Hierarchy
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Profile Management logic.
 
-**TASK:**
-Implement the minimal required functionality for: Role Hierarchy.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Profile Management.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Role Hierarchy within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Profile Management.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Role Hierarchy' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-### [SP-08.04] Role Assignment
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**TASK ID:** SP-08.04
-**PHASE / SUB-PHASE:** 08 — Role Management / 08.04 Role Assignment
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**TASK:**
-Implement the minimal required functionality for: Role Assignment.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Role Assignment within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 20. Dependencies
+Completion of Phase 05.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Role Assignment' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+---
 
-### [SP-08.05] Default Roles
+### Sub-Phase Implementation Prompts
 
-**TASK ID:** SP-08.05
-**PHASE / SUB-PHASE:** 08 — Role Management / 08.05 Default Roles
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-06.01] DB: Models & Migrations for Profile Management
 
-**TASK:**
-Implement the minimal required functionality for: Default Roles.
+```text
+TASK ID: SP-06.01
+PHASE / SUB-PHASE: 06 — Profile Management & Avatar / 06.01 DB: Models & Migrations for Profile Management
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Default Roles within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Profile Management.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Default Roles' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 06.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-## Phase 09 — Permission Management
+#### [SP-06.02] API: Service Layer logic for Profile Management
 
-### [SP-09.01] Permission CRUD
+```text
+TASK ID: SP-06.02
+PHASE / SUB-PHASE: 06 — Profile Management & Avatar / 06.02 API: Service Layer logic for Profile Management
 
-**TASK ID:** SP-09.01
-**PHASE / SUB-PHASE:** 09 — Permission Management / 09.01 Permission CRUD
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Profile Management.
 
-**TASK:**
-Implement the minimal required functionality for: Permission CRUD.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 06.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Permission CRUD within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-06.03] API: Route Controllers for Profile Management
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Permission CRUD' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-06.03
+PHASE / SUB-PHASE: 06 — Profile Management & Avatar / 06.03 API: Route Controllers for Profile Management
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-09.02] Permission Categories
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Profile Management.
 
-**TASK ID:** SP-09.02
-**PHASE / SUB-PHASE:** 09 — Permission Management / 09.02 Permission Categories
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 06.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Permission Categories.
+#### [SP-06.04] UI: API Client Hooks & State for Profile Management
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Permission Categories within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-06.04
+PHASE / SUB-PHASE: 06 — Profile Management & Avatar / 06.04 UI: API Client Hooks & State for Profile Management
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Permission Categories' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Profile Management.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 06.
 
-### [SP-09.03] Permission Groups
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-09.03
-**PHASE / SUB-PHASE:** 09 — Permission Management / 09.03 Permission Groups
+#### [SP-06.05] UI: React Components & Validation for Profile Management
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-06.05
+PHASE / SUB-PHASE: 06 — Profile Management & Avatar / 06.05 UI: React Components & Validation for Profile Management
 
-**TASK:**
-Implement the minimal required functionality for: Permission Groups.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Permission Groups within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Profile Management.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 06.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Permission Groups' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+## Phase 07 — Session & Device Management
 
-### [SP-09.04] Permission Assignment
+### 1. Objective
+Design and implement secure Session Management functionality.
 
-**TASK ID:** SP-09.04
-**PHASE / SUB-PHASE:** 09 — Permission Management / 09.04 Permission Assignment
+### 2. Business Goal
+Meet enterprise requirements by providing robust Session Management capabilities.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 3. Features
+Full stack implementation of Session Management, from DB to UI.
 
-**TASK:**
-Implement the minimal required functionality for: Permission Assignment.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Permission Assignment within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 5. Sub-phases (minimum 5)
+- SP-07.01: DB: Models & Migrations for Session Management
+- SP-07.02: API: Service Layer logic for Session Management
+- SP-07.03: API: Route Controllers for Session Management
+- SP-07.04: UI: API Client Hooks & State for Session Management
+- SP-07.05: UI: React Components & Validation for Session Management
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Permission Assignment' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-### [SP-09.05] Effective Permission Calculation
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**TASK ID:** SP-09.05
-**PHASE / SUB-PHASE:** 09 — Permission Management / 09.05 Effective Permission Calculation
+### 10. API Design
+Build RESTful FastAPI endpoints handling Session Management logic.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Session Management.
 
-**TASK:**
-Implement the minimal required functionality for: Effective Permission Calculation.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Session Management.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Effective Permission Calculation within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Effective Permission Calculation' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-## Phase 10 — Access Control
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-### [SP-10.01] RBAC Engine
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**TASK ID:** SP-10.01
-**PHASE / SUB-PHASE:** 10 — Access Control / 10.01 RBAC Engine
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 20. Dependencies
+Completion of Phase 06.
 
-**TASK:**
-Implement the minimal required functionality for: RBAC Engine.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for RBAC Engine within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+---
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'RBAC Engine' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### Sub-Phase Implementation Prompts
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-### [SP-10.02] Route Guards
+#### [SP-07.01] DB: Models & Migrations for Session Management
 
-**TASK ID:** SP-10.02
-**PHASE / SUB-PHASE:** 10 — Access Control / 10.02 Route Guards
+```text
+TASK ID: SP-07.01
+PHASE / SUB-PHASE: 07 — Session & Device Management / 07.01 DB: Models & Migrations for Session Management
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Route Guards.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Session Management.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Route Guards within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 07.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Route Guards' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-07.02] API: Service Layer logic for Session Management
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-07.02
+PHASE / SUB-PHASE: 07 — Session & Device Management / 07.02 API: Service Layer logic for Session Management
 
-### [SP-10.03] API Authorization
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-10.03
-**PHASE / SUB-PHASE:** 10 — Access Control / 10.03 API Authorization
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Session Management.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 07.
 
-**TASK:**
-Implement the minimal required functionality for: API Authorization.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for API Authorization within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-07.03] API: Route Controllers for Session Management
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-07.03
+PHASE / SUB-PHASE: 07 — Session & Device Management / 07.03 API: Route Controllers for Session Management
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'API Authorization' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Session Management.
 
-### [SP-10.04] Menu Authorization
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 07.
 
-**TASK ID:** SP-10.04
-**PHASE / SUB-PHASE:** 10 — Access Control / 10.04 Menu Authorization
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-07.04] UI: API Client Hooks & State for Session Management
 
-**TASK:**
-Implement the minimal required functionality for: Menu Authorization.
+```text
+TASK ID: SP-07.04
+PHASE / SUB-PHASE: 07 — Session & Device Management / 07.04 UI: API Client Hooks & State for Session Management
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Menu Authorization within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Session Management.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Menu Authorization' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 07.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-10.05] Feature Authorization
+#### [SP-07.05] UI: React Components & Validation for Session Management
 
-**TASK ID:** SP-10.05
-**PHASE / SUB-PHASE:** 10 — Access Control / 10.05 Feature Authorization
+```text
+TASK ID: SP-07.05
+PHASE / SUB-PHASE: 07 — Session & Device Management / 07.05 UI: React Components & Validation for Session Management
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Feature Authorization.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Session Management.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Feature Authorization within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 07.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Feature Authorization' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+## Phase 08 — Two-Factor Authentication (2FA) - TOTP
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 1. Objective
+Design and implement secure 2FA TOTP functionality.
 
-## Phase 11 — Session Management
+### 2. Business Goal
+Meet enterprise requirements by providing robust 2FA TOTP capabilities.
 
-### [SP-11.01] JWT
+### 3. Features
+Full stack implementation of 2FA TOTP, from DB to UI.
 
-**TASK ID:** SP-11.01
-**PHASE / SUB-PHASE:** 11 — Session Management / 11.01 JWT
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 5. Sub-phases (minimum 5)
+- SP-08.01: DB: Models & Migrations for 2FA TOTP
+- SP-08.02: API: Service Layer logic for 2FA TOTP
+- SP-08.03: API: Route Controllers for 2FA TOTP
+- SP-08.04: UI: API Client Hooks & State for 2FA TOTP
+- SP-08.05: UI: React Components & Validation for 2FA TOTP
 
-**TASK:**
-Implement the minimal required functionality for: JWT.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for JWT within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'JWT' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 10. API Design
+Build RESTful FastAPI endpoints handling 2FA TOTP logic.
 
-### [SP-11.02] Refresh Token
+### 11. Database Tasks
+Create or update SQLAlchemy models required for 2FA TOTP.
 
-**TASK ID:** SP-11.02
-**PHASE / SUB-PHASE:** 11 — Session Management / 11.02 Refresh Token
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for 2FA TOTP.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**TASK:**
-Implement the minimal required functionality for: Refresh Token.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Refresh Token within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Refresh Token' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-### [SP-11.03] Session Tracking
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**TASK ID:** SP-11.03
-**PHASE / SUB-PHASE:** 11 — Session Management / 11.03 Session Tracking
+### 20. Dependencies
+Completion of Phase 07.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**TASK:**
-Implement the minimal required functionality for: Session Tracking.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Session Tracking within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+---
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### Sub-Phase Implementation Prompts
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Session Tracking' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-08.01] DB: Models & Migrations for 2FA TOTP
 
-### [SP-11.04] Session Revocation
+```text
+TASK ID: SP-08.01
+PHASE / SUB-PHASE: 08 — Two-Factor Authentication (2FA) - TOTP / 08.01 DB: Models & Migrations for 2FA TOTP
 
-**TASK ID:** SP-11.04
-**PHASE / SUB-PHASE:** 11 — Session Management / 11.04 Session Revocation
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for 2FA TOTP.
 
-**TASK:**
-Implement the minimal required functionality for: Session Revocation.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 08.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Session Revocation within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-08.02] API: Service Layer logic for 2FA TOTP
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Session Revocation' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-08.02
+PHASE / SUB-PHASE: 08 — Two-Factor Authentication (2FA) - TOTP / 08.02 API: Service Layer logic for 2FA TOTP
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-11.05] Login History
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for 2FA TOTP.
 
-**TASK ID:** SP-11.05
-**PHASE / SUB-PHASE:** 11 — Session Management / 11.05 Login History
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 08.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Login History.
+#### [SP-08.03] API: Route Controllers for 2FA TOTP
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Login History within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-08.03
+PHASE / SUB-PHASE: 08 — Two-Factor Authentication (2FA) - TOTP / 08.03 API: Route Controllers for 2FA TOTP
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Login History' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for 2FA TOTP.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 08.
 
-## Phase 12 — Device Management
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-12.01] Trusted Devices
+#### [SP-08.04] UI: API Client Hooks & State for 2FA TOTP
 
-**TASK ID:** SP-12.01
-**PHASE / SUB-PHASE:** 12 — Device Management / 12.01 Trusted Devices
+```text
+TASK ID: SP-08.04
+PHASE / SUB-PHASE: 08 — Two-Factor Authentication (2FA) - TOTP / 08.04 UI: API Client Hooks & State for 2FA TOTP
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Trusted Devices.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for 2FA TOTP.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Trusted Devices within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 08.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Trusted Devices' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-08.05] UI: React Components & Validation for 2FA TOTP
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-08.05
+PHASE / SUB-PHASE: 08 — Two-Factor Authentication (2FA) - TOTP / 08.05 UI: React Components & Validation for 2FA TOTP
 
-### [SP-12.02] Device Fingerprint
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-12.02
-**PHASE / SUB-PHASE:** 12 — Device Management / 12.02 Device Fingerprint
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for 2FA TOTP.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 08.
 
-**TASK:**
-Implement the minimal required functionality for: Device Fingerprint.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Device Fingerprint within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+## Phase 09 — OAuth2 / Social Login
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 1. Objective
+Design and implement secure OAuth2 integration functionality.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Device Fingerprint' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 2. Business Goal
+Meet enterprise requirements by providing robust OAuth2 integration capabilities.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 3. Features
+Full stack implementation of OAuth2 integration, from DB to UI.
 
-### [SP-12.03] Device History
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**TASK ID:** SP-12.03
-**PHASE / SUB-PHASE:** 12 — Device Management / 12.03 Device History
+### 5. Sub-phases (minimum 5)
+- SP-09.01: DB: Models & Migrations for OAuth2 integration
+- SP-09.02: API: Service Layer logic for OAuth2 integration
+- SP-09.03: API: Route Controllers for OAuth2 integration
+- SP-09.04: UI: API Client Hooks & State for OAuth2 integration
+- SP-09.05: UI: React Components & Validation for OAuth2 integration
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**TASK:**
-Implement the minimal required functionality for: Device History.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Device History within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Device History' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 10. API Design
+Build RESTful FastAPI endpoints handling OAuth2 integration logic.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for OAuth2 integration.
 
-### [SP-12.04] Device Removal
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for OAuth2 integration.
 
-**TASK ID:** SP-12.04
-**PHASE / SUB-PHASE:** 12 — Device Management / 12.04 Device Removal
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**TASK:**
-Implement the minimal required functionality for: Device Removal.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Device Removal within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Device Removal' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-### [SP-12.05] Device Security
+### 20. Dependencies
+Completion of Phase 08.
 
-**TASK ID:** SP-12.05
-**PHASE / SUB-PHASE:** 12 — Device Management / 12.05 Device Security
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**TASK:**
-Implement the minimal required functionality for: Device Security.
+---
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Device Security within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### Sub-Phase Implementation Prompts
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Device Security' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-09.01] DB: Models & Migrations for OAuth2 integration
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-09.01
+PHASE / SUB-PHASE: 09 — OAuth2 / Social Login / 09.01 DB: Models & Migrations for OAuth2 integration
 
-## Phase 13 — Notification System
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-13.01] Email
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for OAuth2 integration.
 
-**TASK ID:** SP-13.01
-**PHASE / SUB-PHASE:** 13 — Notification System / 13.01 Email
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 09.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Email.
+#### [SP-09.02] API: Service Layer logic for OAuth2 integration
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Email within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-09.02
+PHASE / SUB-PHASE: 09 — OAuth2 / Social Login / 09.02 API: Service Layer logic for OAuth2 integration
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Email' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for OAuth2 integration.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 09.
 
-### [SP-13.02] SMS
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-13.02
-**PHASE / SUB-PHASE:** 13 — Notification System / 13.02 SMS
+#### [SP-09.03] API: Route Controllers for OAuth2 integration
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-09.03
+PHASE / SUB-PHASE: 09 — OAuth2 / Social Login / 09.03 API: Route Controllers for OAuth2 integration
 
-**TASK:**
-Implement the minimal required functionality for: SMS.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for SMS within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for OAuth2 integration.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 09.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'SMS' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-09.04] UI: API Client Hooks & State for OAuth2 integration
 
-### [SP-13.03] In-App Notification
+```text
+TASK ID: SP-09.04
+PHASE / SUB-PHASE: 09 — OAuth2 / Social Login / 09.04 UI: API Client Hooks & State for OAuth2 integration
 
-**TASK ID:** SP-13.03
-**PHASE / SUB-PHASE:** 13 — Notification System / 13.03 In-App Notification
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for OAuth2 integration.
 
-**TASK:**
-Implement the minimal required functionality for: In-App Notification.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 09.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for In-App Notification within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-09.05] UI: React Components & Validation for OAuth2 integration
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'In-App Notification' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-09.05
+PHASE / SUB-PHASE: 09 — OAuth2 / Social Login / 09.05 UI: React Components & Validation for OAuth2 integration
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-13.04] Notification Templates
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for OAuth2 integration.
 
-**TASK ID:** SP-13.04
-**PHASE / SUB-PHASE:** 13 — Notification System / 13.04 Notification Templates
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 09.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Notification Templates.
+## Phase 10 — Multi-Tenant / Organization Architecture
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Notification Templates within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 1. Objective
+Design and implement secure Multi-Tenancy functionality.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Multi-Tenancy capabilities.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Notification Templates' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 3. Features
+Full stack implementation of Multi-Tenancy, from DB to UI.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-### [SP-13.05] Notification Queue
+### 5. Sub-phases (minimum 5)
+- SP-10.01: DB: Models & Migrations for Multi-Tenancy
+- SP-10.02: API: Service Layer logic for Multi-Tenancy
+- SP-10.03: API: Route Controllers for Multi-Tenancy
+- SP-10.04: UI: API Client Hooks & State for Multi-Tenancy
+- SP-10.05: UI: React Components & Validation for Multi-Tenancy
 
-**TASK ID:** SP-13.05
-**PHASE / SUB-PHASE:** 13 — Notification System / 13.05 Notification Queue
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**TASK:**
-Implement the minimal required functionality for: Notification Queue.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Notification Queue within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Multi-Tenancy logic.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Notification Queue' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Multi-Tenancy.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Multi-Tenancy.
 
-## Phase 14 — Audit & Activity Logs
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-### [SP-14.01] Authentication Logs
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**TASK ID:** SP-14.01
-**PHASE / SUB-PHASE:** 14 — Audit & Activity Logs / 14.01 Authentication Logs
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**TASK:**
-Implement the minimal required functionality for: Authentication Logs.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Authentication Logs within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Authentication Logs' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 20. Dependencies
+Completion of Phase 09.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-### [SP-14.02] Authorization Logs
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**TASK ID:** SP-14.02
-**PHASE / SUB-PHASE:** 14 — Audit & Activity Logs / 14.02 Authorization Logs
+---
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### Sub-Phase Implementation Prompts
 
-**TASK:**
-Implement the minimal required functionality for: Authorization Logs.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Authorization Logs within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-10.01] DB: Models & Migrations for Multi-Tenancy
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-10.01
+PHASE / SUB-PHASE: 10 — Multi-Tenant / Organization Architecture / 10.01 DB: Models & Migrations for Multi-Tenancy
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Authorization Logs' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Multi-Tenancy.
 
-### [SP-14.03] User Activity
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 10.
 
-**TASK ID:** SP-14.03
-**PHASE / SUB-PHASE:** 14 — Audit & Activity Logs / 14.03 User Activity
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-10.02] API: Service Layer logic for Multi-Tenancy
 
-**TASK:**
-Implement the minimal required functionality for: User Activity.
+```text
+TASK ID: SP-10.02
+PHASE / SUB-PHASE: 10 — Multi-Tenant / Organization Architecture / 10.02 API: Service Layer logic for Multi-Tenancy
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for User Activity within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Multi-Tenancy.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'User Activity' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 10.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-14.04] Admin Activity
+#### [SP-10.03] API: Route Controllers for Multi-Tenancy
 
-**TASK ID:** SP-14.04
-**PHASE / SUB-PHASE:** 14 — Audit & Activity Logs / 14.04 Admin Activity
+```text
+TASK ID: SP-10.03
+PHASE / SUB-PHASE: 10 — Multi-Tenant / Organization Architecture / 10.03 API: Route Controllers for Multi-Tenancy
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Admin Activity.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Multi-Tenancy.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Admin Activity within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 10.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Admin Activity' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-10.04] UI: API Client Hooks & State for Multi-Tenancy
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-10.04
+PHASE / SUB-PHASE: 10 — Multi-Tenant / Organization Architecture / 10.04 UI: API Client Hooks & State for Multi-Tenancy
 
-### [SP-14.05] Audit Export
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-14.05
-**PHASE / SUB-PHASE:** 14 — Audit & Activity Logs / 14.05 Audit Export
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Multi-Tenancy.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 10.
 
-**TASK:**
-Implement the minimal required functionality for: Audit Export.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Audit Export within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-10.05] UI: React Components & Validation for Multi-Tenancy
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-10.05
+PHASE / SUB-PHASE: 10 — Multi-Tenant / Organization Architecture / 10.05 UI: React Components & Validation for Multi-Tenancy
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Audit Export' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Multi-Tenancy.
 
-## Phase 15 — Security Hardening
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 10.
 
-### [SP-15.01] Rate Limiting
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-15.01
-**PHASE / SUB-PHASE:** 15 — Security Hardening / 15.01 Rate Limiting
+## Phase 11 — Core RBAC (Role-Based Access Control)
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 1. Objective
+Design and implement secure RBAC Permissions functionality.
 
-**TASK:**
-Implement the minimal required functionality for: Rate Limiting.
+### 2. Business Goal
+Meet enterprise requirements by providing robust RBAC Permissions capabilities.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Rate Limiting within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 3. Features
+Full stack implementation of RBAC Permissions, from DB to UI.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Rate Limiting' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 5. Sub-phases (minimum 5)
+- SP-11.01: DB: Models & Migrations for RBAC Permissions
+- SP-11.02: API: Service Layer logic for RBAC Permissions
+- SP-11.03: API: Route Controllers for RBAC Permissions
+- SP-11.04: UI: API Client Hooks & State for RBAC Permissions
+- SP-11.05: UI: React Components & Validation for RBAC Permissions
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-### [SP-15.02] CSRF
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**TASK ID:** SP-15.02
-**PHASE / SUB-PHASE:** 15 — Security Hardening / 15.02 CSRF
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**TASK:**
-Implement the minimal required functionality for: CSRF.
+### 10. API Design
+Build RESTful FastAPI endpoints handling RBAC Permissions logic.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for CSRF within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for RBAC Permissions.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for RBAC Permissions.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'CSRF' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-### [SP-15.03] CORS
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**TASK ID:** SP-15.03
-**PHASE / SUB-PHASE:** 15 — Security Hardening / 15.03 CORS
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**TASK:**
-Implement the minimal required functionality for: CORS.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for CORS within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 20. Dependencies
+Completion of Phase 10.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'CORS' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-### [SP-15.04] Brute Force Protection
+---
 
-**TASK ID:** SP-15.04
-**PHASE / SUB-PHASE:** 15 — Security Hardening / 15.04 Brute Force Protection
+### Sub-Phase Implementation Prompts
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**TASK:**
-Implement the minimal required functionality for: Brute Force Protection.
+#### [SP-11.01] DB: Models & Migrations for RBAC Permissions
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Brute Force Protection within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-11.01
+PHASE / SUB-PHASE: 11 — Core RBAC (Role-Based Access Control) / 11.01 DB: Models & Migrations for RBAC Permissions
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Brute Force Protection' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for RBAC Permissions.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 11.
 
-### [SP-15.05] Security Headers
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-15.05
-**PHASE / SUB-PHASE:** 15 — Security Hardening / 15.05 Security Headers
+#### [SP-11.02] API: Service Layer logic for RBAC Permissions
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-11.02
+PHASE / SUB-PHASE: 11 — Core RBAC (Role-Based Access Control) / 11.02 API: Service Layer logic for RBAC Permissions
 
-**TASK:**
-Implement the minimal required functionality for: Security Headers.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Security Headers within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for RBAC Permissions.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 11.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Security Headers' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-11.03] API: Route Controllers for RBAC Permissions
 
-## Phase 16 — Admin Console
+```text
+TASK ID: SP-11.03
+PHASE / SUB-PHASE: 11 — Core RBAC (Role-Based Access Control) / 11.03 API: Route Controllers for RBAC Permissions
 
-### [SP-16.01] Dashboard
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-16.01
-**PHASE / SUB-PHASE:** 16 — Admin Console / 16.01 Dashboard
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for RBAC Permissions.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 11.
 
-**TASK:**
-Implement the minimal required functionality for: Dashboard.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Dashboard within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-11.04] UI: API Client Hooks & State for RBAC Permissions
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-11.04
+PHASE / SUB-PHASE: 11 — Core RBAC (Role-Based Access Control) / 11.04 UI: API Client Hooks & State for RBAC Permissions
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Dashboard' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for RBAC Permissions.
 
-### [SP-16.02] User Management
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 11.
 
-**TASK ID:** SP-16.02
-**PHASE / SUB-PHASE:** 16 — Admin Console / 16.02 User Management
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-11.05] UI: React Components & Validation for RBAC Permissions
 
-**TASK:**
-Implement the minimal required functionality for: User Management.
+```text
+TASK ID: SP-11.05
+PHASE / SUB-PHASE: 11 — Core RBAC (Role-Based Access Control) / 11.05 UI: React Components & Validation for RBAC Permissions
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for User Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for RBAC Permissions.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'User Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 11.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-16.03] Role Management
+## Phase 12 — Organization Member Management
 
-**TASK ID:** SP-16.03
-**PHASE / SUB-PHASE:** 16 — Admin Console / 16.03 Role Management
+### 1. Objective
+Design and implement secure Org Members functionality.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Org Members capabilities.
 
-**TASK:**
-Implement the minimal required functionality for: Role Management.
+### 3. Features
+Full stack implementation of Org Members, from DB to UI.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Role Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 5. Sub-phases (minimum 5)
+- SP-12.01: DB: Models & Migrations for Org Members
+- SP-12.02: API: Service Layer logic for Org Members
+- SP-12.03: API: Route Controllers for Org Members
+- SP-12.04: UI: API Client Hooks & State for Org Members
+- SP-12.05: UI: React Components & Validation for Org Members
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Role Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-### [SP-16.04] Permission Management
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**TASK ID:** SP-16.04
-**PHASE / SUB-PHASE:** 16 — Admin Console / 16.04 Permission Management
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Org Members logic.
 
-**TASK:**
-Implement the minimal required functionality for: Permission Management.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Org Members.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Permission Management within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Org Members.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Permission Management' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-### [SP-16.05] Settings
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**TASK ID:** SP-16.05
-**PHASE / SUB-PHASE:** 16 — Admin Console / 16.05 Settings
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**TASK:**
-Implement the minimal required functionality for: Settings.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Settings within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 20. Dependencies
+Completion of Phase 11.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Settings' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+---
 
-## Phase 17 — User Portal
+### Sub-Phase Implementation Prompts
 
-### [SP-17.01] Dashboard
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**TASK ID:** SP-17.01
-**PHASE / SUB-PHASE:** 17 — User Portal / 17.01 Dashboard
+#### [SP-12.01] DB: Models & Migrations for Org Members
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-12.01
+PHASE / SUB-PHASE: 12 — Organization Member Management / 12.01 DB: Models & Migrations for Org Members
 
-**TASK:**
-Implement the minimal required functionality for: Dashboard.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Dashboard within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Org Members.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 12.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Dashboard' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-12.02] API: Service Layer logic for Org Members
 
-### [SP-17.02] Profile
+```text
+TASK ID: SP-12.02
+PHASE / SUB-PHASE: 12 — Organization Member Management / 12.02 API: Service Layer logic for Org Members
 
-**TASK ID:** SP-17.02
-**PHASE / SUB-PHASE:** 17 — User Portal / 17.02 Profile
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Org Members.
 
-**TASK:**
-Implement the minimal required functionality for: Profile.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 12.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Profile within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-12.03] API: Route Controllers for Org Members
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Profile' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-12.03
+PHASE / SUB-PHASE: 12 — Organization Member Management / 12.03 API: Route Controllers for Org Members
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-17.03] Security
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Org Members.
 
-**TASK ID:** SP-17.03
-**PHASE / SUB-PHASE:** 17 — User Portal / 17.03 Security
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 12.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Security.
+#### [SP-12.04] UI: API Client Hooks & State for Org Members
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Security within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-12.04
+PHASE / SUB-PHASE: 12 — Organization Member Management / 12.04 UI: API Client Hooks & State for Org Members
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Security' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Org Members.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 12.
 
-### [SP-17.04] Sessions
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-17.04
-**PHASE / SUB-PHASE:** 17 — User Portal / 17.04 Sessions
+#### [SP-12.05] UI: React Components & Validation for Org Members
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-12.05
+PHASE / SUB-PHASE: 12 — Organization Member Management / 12.05 UI: React Components & Validation for Org Members
 
-**TASK:**
-Implement the minimal required functionality for: Sessions.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Sessions within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Org Members.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 12.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Sessions' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+## Phase 13 — Custom Role Management
 
-### [SP-17.05] Notifications
+### 1. Objective
+Design and implement secure Custom Roles functionality.
 
-**TASK ID:** SP-17.05
-**PHASE / SUB-PHASE:** 17 — User Portal / 17.05 Notifications
+### 2. Business Goal
+Meet enterprise requirements by providing robust Custom Roles capabilities.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 3. Features
+Full stack implementation of Custom Roles, from DB to UI.
 
-**TASK:**
-Implement the minimal required functionality for: Notifications.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Notifications within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 5. Sub-phases (minimum 5)
+- SP-13.01: DB: Models & Migrations for Custom Roles
+- SP-13.02: API: Service Layer logic for Custom Roles
+- SP-13.03: API: Route Controllers for Custom Roles
+- SP-13.04: UI: API Client Hooks & State for Custom Roles
+- SP-13.05: UI: React Components & Validation for Custom Roles
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Notifications' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-## Phase 18 — Public Website
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-### [SP-18.01] Landing Page
+### 10. API Design
+Build RESTful FastAPI endpoints handling Custom Roles logic.
 
-**TASK ID:** SP-18.01
-**PHASE / SUB-PHASE:** 18 — Public Website / 18.01 Landing Page
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Custom Roles.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Custom Roles.
 
-**TASK:**
-Implement the minimal required functionality for: Landing Page.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Landing Page within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Landing Page' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-### [SP-18.02] Features
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**TASK ID:** SP-18.02
-**PHASE / SUB-PHASE:** 18 — Public Website / 18.02 Features
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 20. Dependencies
+Completion of Phase 12.
 
-**TASK:**
-Implement the minimal required functionality for: Features.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Features within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+---
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Features' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### Sub-Phase Implementation Prompts
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-### [SP-18.03] Contact
+#### [SP-13.01] DB: Models & Migrations for Custom Roles
 
-**TASK ID:** SP-18.03
-**PHASE / SUB-PHASE:** 18 — Public Website / 18.03 Contact
+```text
+TASK ID: SP-13.01
+PHASE / SUB-PHASE: 13 — Custom Role Management / 13.01 DB: Models & Migrations for Custom Roles
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Contact.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Custom Roles.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Contact within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 13.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Contact' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-13.02] API: Service Layer logic for Custom Roles
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-13.02
+PHASE / SUB-PHASE: 13 — Custom Role Management / 13.02 API: Service Layer logic for Custom Roles
 
-### [SP-18.04] Privacy Policy
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-18.04
-**PHASE / SUB-PHASE:** 18 — Public Website / 18.04 Privacy Policy
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Custom Roles.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 13.
 
-**TASK:**
-Implement the minimal required functionality for: Privacy Policy.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Privacy Policy within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-13.03] API: Route Controllers for Custom Roles
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-13.03
+PHASE / SUB-PHASE: 13 — Custom Role Management / 13.03 API: Route Controllers for Custom Roles
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Privacy Policy' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Custom Roles.
 
-### [SP-18.05] Terms of Service
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 13.
 
-**TASK ID:** SP-18.05
-**PHASE / SUB-PHASE:** 18 — Public Website / 18.05 Terms of Service
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-13.04] UI: API Client Hooks & State for Custom Roles
 
-**TASK:**
-Implement the minimal required functionality for: Terms of Service.
+```text
+TASK ID: SP-13.04
+PHASE / SUB-PHASE: 13 — Custom Role Management / 13.04 UI: API Client Hooks & State for Custom Roles
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Terms of Service within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Custom Roles.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Terms of Service' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 13.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-## Phase 19 — API Documentation & SDK
+#### [SP-13.05] UI: React Components & Validation for Custom Roles
 
-### [SP-19.01] OpenAPI
+```text
+TASK ID: SP-13.05
+PHASE / SUB-PHASE: 13 — Custom Role Management / 13.05 UI: React Components & Validation for Custom Roles
 
-**TASK ID:** SP-19.01
-**PHASE / SUB-PHASE:** 19 — API Documentation & SDK / 19.01 OpenAPI
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Custom Roles.
 
-**TASK:**
-Implement the minimal required functionality for: OpenAPI.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 13.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for OpenAPI within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+## Phase 14 — User Impersonation (Super Admin)
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'OpenAPI' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 1. Objective
+Design and implement secure Impersonation functionality.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Impersonation capabilities.
 
-### [SP-19.02] Swagger
+### 3. Features
+Full stack implementation of Impersonation, from DB to UI.
 
-**TASK ID:** SP-19.02
-**PHASE / SUB-PHASE:** 19 — API Documentation & SDK / 19.02 Swagger
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 5. Sub-phases (minimum 5)
+- SP-14.01: DB: Models & Migrations for Impersonation
+- SP-14.02: API: Service Layer logic for Impersonation
+- SP-14.03: API: Route Controllers for Impersonation
+- SP-14.04: UI: API Client Hooks & State for Impersonation
+- SP-14.05: UI: React Components & Validation for Impersonation
 
-**TASK:**
-Implement the minimal required functionality for: Swagger.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Swagger within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Swagger' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Impersonation logic.
 
-### [SP-19.03] SDK
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Impersonation.
 
-**TASK ID:** SP-19.03
-**PHASE / SUB-PHASE:** 19 — API Documentation & SDK / 19.03 SDK
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Impersonation.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**TASK:**
-Implement the minimal required functionality for: SDK.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for SDK within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'SDK' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-### [SP-19.04] Postman Collection
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**TASK ID:** SP-19.04
-**PHASE / SUB-PHASE:** 19 — API Documentation & SDK / 19.04 Postman Collection
+### 20. Dependencies
+Completion of Phase 13.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**TASK:**
-Implement the minimal required functionality for: Postman Collection.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Postman Collection within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+---
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### Sub-Phase Implementation Prompts
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Postman Collection' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-14.01] DB: Models & Migrations for Impersonation
 
-### [SP-19.05] API Examples
+```text
+TASK ID: SP-14.01
+PHASE / SUB-PHASE: 14 — User Impersonation (Super Admin) / 14.01 DB: Models & Migrations for Impersonation
 
-**TASK ID:** SP-19.05
-**PHASE / SUB-PHASE:** 19 — API Documentation & SDK / 19.05 API Examples
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Impersonation.
 
-**TASK:**
-Implement the minimal required functionality for: API Examples.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 14.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for API Examples within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-14.02] API: Service Layer logic for Impersonation
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'API Examples' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-14.02
+PHASE / SUB-PHASE: 14 — User Impersonation (Super Admin) / 14.02 API: Service Layer logic for Impersonation
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-## Phase 20 — Testing & QA
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Impersonation.
 
-### [SP-20.01] Unit Testing
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 14.
 
-**TASK ID:** SP-20.01
-**PHASE / SUB-PHASE:** 20 — Testing & QA / 20.01 Unit Testing
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-14.03] API: Route Controllers for Impersonation
 
-**TASK:**
-Implement the minimal required functionality for: Unit Testing.
+```text
+TASK ID: SP-14.03
+PHASE / SUB-PHASE: 14 — User Impersonation (Super Admin) / 14.03 API: Route Controllers for Impersonation
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Unit Testing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Impersonation.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Unit Testing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 14.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-20.02] Integration Testing
+#### [SP-14.04] UI: API Client Hooks & State for Impersonation
 
-**TASK ID:** SP-20.02
-**PHASE / SUB-PHASE:** 20 — Testing & QA / 20.02 Integration Testing
+```text
+TASK ID: SP-14.04
+PHASE / SUB-PHASE: 14 — User Impersonation (Super Admin) / 14.04 UI: API Client Hooks & State for Impersonation
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Integration Testing.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Impersonation.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Integration Testing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 14.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Integration Testing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-14.05] UI: React Components & Validation for Impersonation
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-14.05
+PHASE / SUB-PHASE: 14 — User Impersonation (Super Admin) / 14.05 UI: React Components & Validation for Impersonation
 
-### [SP-20.03] End-to-End Testing
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK ID:** SP-20.03
-**PHASE / SUB-PHASE:** 20 — Testing & QA / 20.03 End-to-End Testing
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Impersonation.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 14.
 
-**TASK:**
-Implement the minimal required functionality for: End-to-End Testing.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for End-to-End Testing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+## Phase 15 — Developer API Keys
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 1. Objective
+Design and implement secure API Keys functionality.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'End-to-End Testing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 2. Business Goal
+Meet enterprise requirements by providing robust API Keys capabilities.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 3. Features
+Full stack implementation of API Keys, from DB to UI.
 
-### [SP-20.04] Performance Testing
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**TASK ID:** SP-20.04
-**PHASE / SUB-PHASE:** 20 — Testing & QA / 20.04 Performance Testing
+### 5. Sub-phases (minimum 5)
+- SP-15.01: DB: Models & Migrations for API Keys
+- SP-15.02: API: Service Layer logic for API Keys
+- SP-15.03: API: Route Controllers for API Keys
+- SP-15.04: UI: API Client Hooks & State for API Keys
+- SP-15.05: UI: React Components & Validation for API Keys
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**TASK:**
-Implement the minimal required functionality for: Performance Testing.
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Performance Testing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Performance Testing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 10. API Design
+Build RESTful FastAPI endpoints handling API Keys logic.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for API Keys.
 
-### [SP-20.05] Security Testing
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for API Keys.
 
-**TASK ID:** SP-20.05
-**PHASE / SUB-PHASE:** 20 — Testing & QA / 20.05 Security Testing
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**TASK:**
-Implement the minimal required functionality for: Security Testing.
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Security Testing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Security Testing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-## Phase 21 — Monitoring & Observability
+### 20. Dependencies
+Completion of Phase 14.
 
-### [SP-21.01] Structured Logging
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**TASK ID:** SP-21.01
-**PHASE / SUB-PHASE:** 21 — Monitoring & Observability / 21.01 Structured Logging
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+---
 
-**TASK:**
-Implement the minimal required functionality for: Structured Logging.
+### Sub-Phase Implementation Prompts
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Structured Logging within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-15.01] DB: Models & Migrations for API Keys
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Structured Logging' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-15.01
+PHASE / SUB-PHASE: 15 — Developer API Keys / 15.01 DB: Models & Migrations for API Keys
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-21.02] Metrics
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for API Keys.
 
-**TASK ID:** SP-21.02
-**PHASE / SUB-PHASE:** 21 — Monitoring & Observability / 21.02 Metrics
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 15.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Metrics.
+#### [SP-15.02] API: Service Layer logic for API Keys
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Metrics within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-15.02
+PHASE / SUB-PHASE: 15 — Developer API Keys / 15.02 API: Service Layer logic for API Keys
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Metrics' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for API Keys.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 15.
 
-### [SP-21.03] Health Checks
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-21.03
-**PHASE / SUB-PHASE:** 21 — Monitoring & Observability / 21.03 Health Checks
+#### [SP-15.03] API: Route Controllers for API Keys
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+```text
+TASK ID: SP-15.03
+PHASE / SUB-PHASE: 15 — Developer API Keys / 15.03 API: Route Controllers for API Keys
 
-**TASK:**
-Implement the minimal required functionality for: Health Checks.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Health Checks within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for API Keys.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 15.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Health Checks' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+#### [SP-15.04] UI: API Client Hooks & State for API Keys
 
-### [SP-21.04] Tracing
+```text
+TASK ID: SP-15.04
+PHASE / SUB-PHASE: 15 — Developer API Keys / 15.04 UI: API Client Hooks & State for API Keys
 
-**TASK ID:** SP-21.04
-**PHASE / SUB-PHASE:** 21 — Monitoring & Observability / 21.04 Tracing
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for API Keys.
 
-**TASK:**
-Implement the minimal required functionality for: Tracing.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 15.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Tracing within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+#### [SP-15.05] UI: React Components & Validation for API Keys
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Tracing' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+```text
+TASK ID: SP-15.05
+PHASE / SUB-PHASE: 15 — Developer API Keys / 15.05 UI: React Components & Validation for API Keys
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-21.05] Alerting
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for API Keys.
 
-**TASK ID:** SP-21.05
-**PHASE / SUB-PHASE:** 21 — Monitoring & Observability / 21.05 Alerting
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 15.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Alerting.
+## Phase 16 — System Audit Logs
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Alerting within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 1. Objective
+Design and implement secure Audit Logging functionality.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Audit Logging capabilities.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Alerting' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 3. Features
+Full stack implementation of Audit Logging, from DB to UI.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-## Phase 22 — CI/CD & Deployment
+### 5. Sub-phases (minimum 5)
+- SP-16.01: DB: Models & Migrations for Audit Logging
+- SP-16.02: API: Service Layer logic for Audit Logging
+- SP-16.03: API: Route Controllers for Audit Logging
+- SP-16.04: UI: API Client Hooks & State for Audit Logging
+- SP-16.05: UI: React Components & Validation for Audit Logging
 
-### [SP-22.01] Build Pipeline
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-**TASK ID:** SP-22.01
-**PHASE / SUB-PHASE:** 22 — CI/CD & Deployment / 22.01 Build Pipeline
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**TASK:**
-Implement the minimal required functionality for: Build Pipeline.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Build Pipeline within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Audit Logging logic.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Audit Logging.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Build Pipeline' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Audit Logging.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-### [SP-22.02] Test Pipeline
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-**TASK ID:** SP-22.02
-**PHASE / SUB-PHASE:** 22 — CI/CD & Deployment / 22.02 Test Pipeline
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**TASK:**
-Implement the minimal required functionality for: Test Pipeline.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Test Pipeline within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Test Pipeline' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 20. Dependencies
+Completion of Phase 15.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-### [SP-22.03] Docker Images
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-**TASK ID:** SP-22.03
-**PHASE / SUB-PHASE:** 22 — CI/CD & Deployment / 22.03 Docker Images
+---
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### Sub-Phase Implementation Prompts
 
-**TASK:**
-Implement the minimal required functionality for: Docker Images.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Docker Images within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+#### [SP-16.01] DB: Models & Migrations for Audit Logging
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+```text
+TASK ID: SP-16.01
+PHASE / SUB-PHASE: 16 — System Audit Logs / 16.01 DB: Models & Migrations for Audit Logging
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Docker Images' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Audit Logging.
 
-### [SP-22.04] Deployment Pipeline
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 16.
 
-**TASK ID:** SP-22.04
-**PHASE / SUB-PHASE:** 22 — CI/CD & Deployment / 22.04 Deployment Pipeline
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+#### [SP-16.02] API: Service Layer logic for Audit Logging
 
-**TASK:**
-Implement the minimal required functionality for: Deployment Pipeline.
+```text
+TASK ID: SP-16.02
+PHASE / SUB-PHASE: 16 — System Audit Logs / 16.02 API: Service Layer logic for Audit Logging
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Deployment Pipeline within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Audit Logging.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Deployment Pipeline' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 16.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-### [SP-22.05] Rollback Strategy
+#### [SP-16.03] API: Route Controllers for Audit Logging
 
-**TASK ID:** SP-22.05
-**PHASE / SUB-PHASE:** 22 — CI/CD & Deployment / 22.05 Rollback Strategy
+```text
+TASK ID: SP-16.03
+PHASE / SUB-PHASE: 16 — System Audit Logs / 16.03 API: Route Controllers for Audit Logging
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**TASK:**
-Implement the minimal required functionality for: Rollback Strategy.
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Audit Logging.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Rollback Strategy within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 16.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Rollback Strategy' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+#### [SP-16.04] UI: API Client Hooks & State for Audit Logging
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+```text
+TASK ID: SP-16.04
+PHASE / SUB-PHASE: 16 — System Audit Logs / 16.04 UI: API Client Hooks & State for Audit Logging
 
-## Phase 23 — Production Readiness
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-### [SP-23.01] Performance Optimization
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Audit Logging.
 
-**TASK ID:** SP-23.01
-**PHASE / SUB-PHASE:** 23 — Production Readiness / 23.01 Performance Optimization
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 16.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK:**
-Implement the minimal required functionality for: Performance Optimization.
+#### [SP-16.05] UI: React Components & Validation for Audit Logging
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Performance Optimization within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-16.05
+PHASE / SUB-PHASE: 16 — System Audit Logs / 16.05 UI: React Components & Validation for Audit Logging
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Performance Optimization' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Audit Logging.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 16.
 
-### [SP-23.02] Security Audit
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
-**TASK ID:** SP-23.02
-**PHASE / SUB-PHASE:** 23 — Production Readiness / 23.02 Security Audit
+## Phase 17 — Webhooks System
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 1. Objective
+Design and implement secure Webhooks functionality.
 
-**TASK:**
-Implement the minimal required functionality for: Security Audit.
+### 2. Business Goal
+Meet enterprise requirements by providing robust Webhooks capabilities.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Security Audit within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 3. Features
+Full stack implementation of Webhooks, from DB to UI.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Security Audit' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 5. Sub-phases (minimum 5)
+- SP-17.01: DB: Models & Migrations for Webhooks
+- SP-17.02: API: Service Layer logic for Webhooks
+- SP-17.03: API: Route Controllers for Webhooks
+- SP-17.04: UI: API Client Hooks & State for Webhooks
+- SP-17.05: UI: React Components & Validation for Webhooks
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
 
-### [SP-23.03] Backup & Recovery
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
 
-**TASK ID:** SP-23.03
-**PHASE / SUB-PHASE:** 23 — Production Readiness / 23.03 Backup & Recovery
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
 
-**TASK:**
-Implement the minimal required functionality for: Backup & Recovery.
+### 10. API Design
+Build RESTful FastAPI endpoints handling Webhooks logic.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Backup & Recovery within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Webhooks.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Webhooks.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Backup & Recovery' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
 
-### [SP-23.04] Disaster Recovery Plan
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
 
-**TASK ID:** SP-23.04
-**PHASE / SUB-PHASE:** 23 — Production Readiness / 23.04 Disaster Recovery Plan
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
 
-**TASK:**
-Implement the minimal required functionality for: Disaster Recovery Plan.
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Disaster Recovery Plan within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+### 20. Dependencies
+Completion of Phase 16.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Disaster Recovery Plan' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
 
-### [SP-23.05] Production Checklist
+---
 
-**TASK ID:** SP-23.05
-**PHASE / SUB-PHASE:** 23 — Production Readiness / 23.05 Production Checklist
+### Sub-Phase Implementation Prompts
 
-**CONTEXT:**
-Identity and Access Management is a premium enterprise IAM platform. Read the documentation in docs/01_CONSTITUTION.md through docs/05_CODING_STANDARDS.md. The target architecture is apps/admin, apps/portal, apps/website, apps/docs, apps/setup, and apps/api.
+> *Copy and paste these exact prompts to the AI to execute development.*
 
-**TASK:**
-Implement the minimal required functionality for: Production Checklist.
+#### [SP-17.01] DB: Models & Migrations for Webhooks
 
-**REQUIREMENTS:**
-- Develop the necessary code and infrastructure for Production Checklist within the appropriate workspace packages.
-- Ensure integration aligns with the architectural boundaries outlined in docs/03_ARCHITECTURE.md.
-- Adhere strictly to the coding and architectural standards.
+```text
+TASK ID: SP-17.01
+PHASE / SUB-PHASE: 17 — Webhooks System / 17.01 DB: Models & Migrations for Webhooks
 
-**CONSTRAINTS:**
-- Do not install unnecessary dependencies.
-- Preserve all existing documentation and unrelated modules.
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
 
-**ACCEPTANCE CRITERIA:**
-- The feature 'Production Checklist' functions correctly in isolation.
-- All associated unit and integration tests pass successfully.
-- No sensitive credentials or secrets are committed or exposed.
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Webhooks.
 
-**VALIDATION:**
-- Inspect the resulting repository tree and code changes.
-- Run linting, build scripts, and local tests to confirm successful output.
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 17.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-17.02] API: Service Layer logic for Webhooks
+
+```text
+TASK ID: SP-17.02
+PHASE / SUB-PHASE: 17 — Webhooks System / 17.02 API: Service Layer logic for Webhooks
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Webhooks.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 17.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-17.03] API: Route Controllers for Webhooks
+
+```text
+TASK ID: SP-17.03
+PHASE / SUB-PHASE: 17 — Webhooks System / 17.03 API: Route Controllers for Webhooks
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Webhooks.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 17.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-17.04] UI: API Client Hooks & State for Webhooks
+
+```text
+TASK ID: SP-17.04
+PHASE / SUB-PHASE: 17 — Webhooks System / 17.04 UI: API Client Hooks & State for Webhooks
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Webhooks.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 17.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-17.05] UI: React Components & Validation for Webhooks
+
+```text
+TASK ID: SP-17.05
+PHASE / SUB-PHASE: 17 — Webhooks System / 17.05 UI: React Components & Validation for Webhooks
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Webhooks.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 17.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 18 — Notification System
+
+### 1. Objective
+Design and implement secure Notifications functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Notifications capabilities.
+
+### 3. Features
+Full stack implementation of Notifications, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-18.01: DB: Models & Migrations for Notifications
+- SP-18.02: API: Service Layer logic for Notifications
+- SP-18.03: API: Route Controllers for Notifications
+- SP-18.04: UI: API Client Hooks & State for Notifications
+- SP-18.05: UI: React Components & Validation for Notifications
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Notifications logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Notifications.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Notifications.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 17.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-18.01] DB: Models & Migrations for Notifications
+
+```text
+TASK ID: SP-18.01
+PHASE / SUB-PHASE: 18 — Notification System / 18.01 DB: Models & Migrations for Notifications
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Notifications.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 18.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-18.02] API: Service Layer logic for Notifications
+
+```text
+TASK ID: SP-18.02
+PHASE / SUB-PHASE: 18 — Notification System / 18.02 API: Service Layer logic for Notifications
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Notifications.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 18.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-18.03] API: Route Controllers for Notifications
+
+```text
+TASK ID: SP-18.03
+PHASE / SUB-PHASE: 18 — Notification System / 18.03 API: Route Controllers for Notifications
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Notifications.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 18.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-18.04] UI: API Client Hooks & State for Notifications
+
+```text
+TASK ID: SP-18.04
+PHASE / SUB-PHASE: 18 — Notification System / 18.04 UI: API Client Hooks & State for Notifications
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Notifications.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 18.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-18.05] UI: React Components & Validation for Notifications
+
+```text
+TASK ID: SP-18.05
+PHASE / SUB-PHASE: 18 — Notification System / 18.05 UI: React Components & Validation for Notifications
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Notifications.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 18.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 19 — Subscription & Billing Setup (Stripe)
+
+### 1. Objective
+Design and implement secure Stripe Setup functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Stripe Setup capabilities.
+
+### 3. Features
+Full stack implementation of Stripe Setup, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-19.01: DB: Models & Migrations for Stripe Setup
+- SP-19.02: API: Service Layer logic for Stripe Setup
+- SP-19.03: API: Route Controllers for Stripe Setup
+- SP-19.04: UI: API Client Hooks & State for Stripe Setup
+- SP-19.05: UI: React Components & Validation for Stripe Setup
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Stripe Setup logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Stripe Setup.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Stripe Setup.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 18.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-19.01] DB: Models & Migrations for Stripe Setup
+
+```text
+TASK ID: SP-19.01
+PHASE / SUB-PHASE: 19 — Subscription & Billing Setup (Stripe) / 19.01 DB: Models & Migrations for Stripe Setup
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Stripe Setup.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 19.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-19.02] API: Service Layer logic for Stripe Setup
+
+```text
+TASK ID: SP-19.02
+PHASE / SUB-PHASE: 19 — Subscription & Billing Setup (Stripe) / 19.02 API: Service Layer logic for Stripe Setup
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Stripe Setup.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 19.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-19.03] API: Route Controllers for Stripe Setup
+
+```text
+TASK ID: SP-19.03
+PHASE / SUB-PHASE: 19 — Subscription & Billing Setup (Stripe) / 19.03 API: Route Controllers for Stripe Setup
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Stripe Setup.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 19.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-19.04] UI: API Client Hooks & State for Stripe Setup
+
+```text
+TASK ID: SP-19.04
+PHASE / SUB-PHASE: 19 — Subscription & Billing Setup (Stripe) / 19.04 UI: API Client Hooks & State for Stripe Setup
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Stripe Setup.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 19.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-19.05] UI: React Components & Validation for Stripe Setup
+
+```text
+TASK ID: SP-19.05
+PHASE / SUB-PHASE: 19 — Subscription & Billing Setup (Stripe) / 19.05 UI: React Components & Validation for Stripe Setup
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Stripe Setup.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 19.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 20 — Billing Management
+
+### 1. Objective
+Design and implement secure Stripe Management functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Stripe Management capabilities.
+
+### 3. Features
+Full stack implementation of Stripe Management, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-20.01: DB: Models & Migrations for Stripe Management
+- SP-20.02: API: Service Layer logic for Stripe Management
+- SP-20.03: API: Route Controllers for Stripe Management
+- SP-20.04: UI: API Client Hooks & State for Stripe Management
+- SP-20.05: UI: React Components & Validation for Stripe Management
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Stripe Management logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Stripe Management.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Stripe Management.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 19.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-20.01] DB: Models & Migrations for Stripe Management
+
+```text
+TASK ID: SP-20.01
+PHASE / SUB-PHASE: 20 — Billing Management / 20.01 DB: Models & Migrations for Stripe Management
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Stripe Management.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 20.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-20.02] API: Service Layer logic for Stripe Management
+
+```text
+TASK ID: SP-20.02
+PHASE / SUB-PHASE: 20 — Billing Management / 20.02 API: Service Layer logic for Stripe Management
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Stripe Management.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 20.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-20.03] API: Route Controllers for Stripe Management
+
+```text
+TASK ID: SP-20.03
+PHASE / SUB-PHASE: 20 — Billing Management / 20.03 API: Route Controllers for Stripe Management
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Stripe Management.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 20.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-20.04] UI: API Client Hooks & State for Stripe Management
+
+```text
+TASK ID: SP-20.04
+PHASE / SUB-PHASE: 20 — Billing Management / 20.04 UI: API Client Hooks & State for Stripe Management
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Stripe Management.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 20.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-20.05] UI: React Components & Validation for Stripe Management
+
+```text
+TASK ID: SP-20.05
+PHASE / SUB-PHASE: 20 — Billing Management / 20.05 UI: React Components & Validation for Stripe Management
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Stripe Management.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 20.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 21 — Advanced Rate Limiting & Abuse Prevention
+
+### 1. Objective
+Design and implement secure Rate Limiting functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Rate Limiting capabilities.
+
+### 3. Features
+Full stack implementation of Rate Limiting, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-21.01: DB: Models & Migrations for Rate Limiting
+- SP-21.02: API: Service Layer logic for Rate Limiting
+- SP-21.03: API: Route Controllers for Rate Limiting
+- SP-21.04: UI: API Client Hooks & State for Rate Limiting
+- SP-21.05: UI: React Components & Validation for Rate Limiting
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Rate Limiting logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Rate Limiting.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Rate Limiting.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 20.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-21.01] DB: Models & Migrations for Rate Limiting
+
+```text
+TASK ID: SP-21.01
+PHASE / SUB-PHASE: 21 — Advanced Rate Limiting & Abuse Prevention / 21.01 DB: Models & Migrations for Rate Limiting
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Rate Limiting.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 21.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-21.02] API: Service Layer logic for Rate Limiting
+
+```text
+TASK ID: SP-21.02
+PHASE / SUB-PHASE: 21 — Advanced Rate Limiting & Abuse Prevention / 21.02 API: Service Layer logic for Rate Limiting
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Rate Limiting.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 21.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-21.03] API: Route Controllers for Rate Limiting
+
+```text
+TASK ID: SP-21.03
+PHASE / SUB-PHASE: 21 — Advanced Rate Limiting & Abuse Prevention / 21.03 API: Route Controllers for Rate Limiting
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Rate Limiting.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 21.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-21.04] UI: API Client Hooks & State for Rate Limiting
+
+```text
+TASK ID: SP-21.04
+PHASE / SUB-PHASE: 21 — Advanced Rate Limiting & Abuse Prevention / 21.04 UI: API Client Hooks & State for Rate Limiting
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Rate Limiting.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 21.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-21.05] UI: React Components & Validation for Rate Limiting
+
+```text
+TASK ID: SP-21.05
+PHASE / SUB-PHASE: 21 — Advanced Rate Limiting & Abuse Prevention / 21.05 UI: React Components & Validation for Rate Limiting
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Rate Limiting.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 21.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 22 — Analytics & Telemetry Dashboard
+
+### 1. Objective
+Design and implement secure Analytics functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Analytics capabilities.
+
+### 3. Features
+Full stack implementation of Analytics, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-22.01: DB: Models & Migrations for Analytics
+- SP-22.02: API: Service Layer logic for Analytics
+- SP-22.03: API: Route Controllers for Analytics
+- SP-22.04: UI: API Client Hooks & State for Analytics
+- SP-22.05: UI: React Components & Validation for Analytics
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Analytics logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Analytics.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Analytics.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 21.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-22.01] DB: Models & Migrations for Analytics
+
+```text
+TASK ID: SP-22.01
+PHASE / SUB-PHASE: 22 — Analytics & Telemetry Dashboard / 22.01 DB: Models & Migrations for Analytics
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Analytics.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 22.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-22.02] API: Service Layer logic for Analytics
+
+```text
+TASK ID: SP-22.02
+PHASE / SUB-PHASE: 22 — Analytics & Telemetry Dashboard / 22.02 API: Service Layer logic for Analytics
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Analytics.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 22.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-22.03] API: Route Controllers for Analytics
+
+```text
+TASK ID: SP-22.03
+PHASE / SUB-PHASE: 22 — Analytics & Telemetry Dashboard / 22.03 API: Route Controllers for Analytics
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Analytics.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 22.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-22.04] UI: API Client Hooks & State for Analytics
+
+```text
+TASK ID: SP-22.04
+PHASE / SUB-PHASE: 22 — Analytics & Telemetry Dashboard / 22.04 UI: API Client Hooks & State for Analytics
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Analytics.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 22.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-22.05] UI: React Components & Validation for Analytics
+
+```text
+TASK ID: SP-22.05
+PHASE / SUB-PHASE: 22 — Analytics & Telemetry Dashboard / 22.05 UI: React Components & Validation for Analytics
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Analytics.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 22.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 23 — Account Deletion & GDPR
+
+### 1. Objective
+Design and implement secure GDPR Deletion functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust GDPR Deletion capabilities.
+
+### 3. Features
+Full stack implementation of GDPR Deletion, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-23.01: DB: Models & Migrations for GDPR Deletion
+- SP-23.02: API: Service Layer logic for GDPR Deletion
+- SP-23.03: API: Route Controllers for GDPR Deletion
+- SP-23.04: UI: API Client Hooks & State for GDPR Deletion
+- SP-23.05: UI: React Components & Validation for GDPR Deletion
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling GDPR Deletion logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for GDPR Deletion.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for GDPR Deletion.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 22.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-23.01] DB: Models & Migrations for GDPR Deletion
+
+```text
+TASK ID: SP-23.01
+PHASE / SUB-PHASE: 23 — Account Deletion & GDPR / 23.01 DB: Models & Migrations for GDPR Deletion
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for GDPR Deletion.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 23.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-23.02] API: Service Layer logic for GDPR Deletion
+
+```text
+TASK ID: SP-23.02
+PHASE / SUB-PHASE: 23 — Account Deletion & GDPR / 23.02 API: Service Layer logic for GDPR Deletion
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for GDPR Deletion.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 23.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-23.03] API: Route Controllers for GDPR Deletion
+
+```text
+TASK ID: SP-23.03
+PHASE / SUB-PHASE: 23 — Account Deletion & GDPR / 23.03 API: Route Controllers for GDPR Deletion
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for GDPR Deletion.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 23.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-23.04] UI: API Client Hooks & State for GDPR Deletion
+
+```text
+TASK ID: SP-23.04
+PHASE / SUB-PHASE: 23 — Account Deletion & GDPR / 23.04 UI: API Client Hooks & State for GDPR Deletion
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for GDPR Deletion.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 23.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-23.05] UI: React Components & Validation for GDPR Deletion
+
+```text
+TASK ID: SP-23.05
+PHASE / SUB-PHASE: 23 — Account Deletion & GDPR / 23.05 UI: React Components & Validation for GDPR Deletion
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for GDPR Deletion.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 23.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 24 — Security Hardening
+
+### 1. Objective
+Design and implement secure Security Hardening functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Security Hardening capabilities.
+
+### 3. Features
+Full stack implementation of Security Hardening, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-24.01: DB: Models & Migrations for Security Hardening
+- SP-24.02: API: Service Layer logic for Security Hardening
+- SP-24.03: API: Route Controllers for Security Hardening
+- SP-24.04: UI: API Client Hooks & State for Security Hardening
+- SP-24.05: UI: React Components & Validation for Security Hardening
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Security Hardening logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Security Hardening.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Security Hardening.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 23.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-24.01] DB: Models & Migrations for Security Hardening
+
+```text
+TASK ID: SP-24.01
+PHASE / SUB-PHASE: 24 — Security Hardening / 24.01 DB: Models & Migrations for Security Hardening
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Security Hardening.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 24.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-24.02] API: Service Layer logic for Security Hardening
+
+```text
+TASK ID: SP-24.02
+PHASE / SUB-PHASE: 24 — Security Hardening / 24.02 API: Service Layer logic for Security Hardening
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Security Hardening.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 24.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-24.03] API: Route Controllers for Security Hardening
+
+```text
+TASK ID: SP-24.03
+PHASE / SUB-PHASE: 24 — Security Hardening / 24.03 API: Route Controllers for Security Hardening
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Security Hardening.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 24.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-24.04] UI: API Client Hooks & State for Security Hardening
+
+```text
+TASK ID: SP-24.04
+PHASE / SUB-PHASE: 24 — Security Hardening / 24.04 UI: API Client Hooks & State for Security Hardening
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Security Hardening.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 24.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-24.05] UI: React Components & Validation for Security Hardening
+
+```text
+TASK ID: SP-24.05
+PHASE / SUB-PHASE: 24 — Security Hardening / 24.05 UI: React Components & Validation for Security Hardening
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Security Hardening.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 24.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+## Phase 25 — Production Deployment & CI/CD
+
+### 1. Objective
+Design and implement secure Production CI/CD functionality.
+
+### 2. Business Goal
+Meet enterprise requirements by providing robust Production CI/CD capabilities.
+
+### 3. Features
+Full stack implementation of Production CI/CD, from DB to UI.
+
+### 4. Deliverables
+Merged PR containing full vertical slice code (DB, API, UI) passing all tests.
+
+### 5. Sub-phases (minimum 5)
+- SP-25.01: DB: Models & Migrations for Production CI/CD
+- SP-25.02: API: Service Layer logic for Production CI/CD
+- SP-25.03: API: Route Controllers for Production CI/CD
+- SP-25.04: UI: API Client Hooks & State for Production CI/CD
+- SP-25.05: UI: React Components & Validation for Production CI/CD
+
+### 6. Tasks (minimum 5 per sub-phase)
+1. Scaffold structure. 2. Write logic. 3. Hook up UI. 4. Write tests. 5. Perform security review.
+
+### 7. Folder Structure
+Follow strict separation: `apps/api/domain`, `packages/ui`, `apps/admin/features`.
+
+### 8. Backend Architecture
+Use Domain Driven Design. FastAPI Controllers inject Services which inject Repositories.
+
+### 9. Frontend Architecture
+Strictly follow: `UI -> Custom Hook -> TanStack Query -> API Client`.
+
+### 10. API Design
+Build RESTful FastAPI endpoints handling Production CI/CD logic.
+
+### 11. Database Tasks
+Create or update SQLAlchemy models required for Production CI/CD.
+
+### 12. UI Tasks
+Build TanStack Query hooks and React UI for Production CI/CD.
+
+### 13. UX Tasks
+Use Loading Skeletons and Toast notifications to ensure a premium feel.
+
+### 14. Security Tasks
+Enforce strict RBAC and validate all inputs via Pydantic and Zod.
+
+### 15. Testing Tasks
+Ensure 80% minimum coverage for all new services and controllers.
+
+### 16. DevOps Tasks
+Validate CI pipeline passes with new dependencies.
+
+### 17. Documentation Tasks
+Update ADRs if fundamental architecture decisions change.
+
+### 18. Acceptance Criteria
+Feature operates end-to-end without errors in staging.
+
+### 19. Success Criteria
+Code adheres 100% to Constitution and AI rules.
+
+### 20. Dependencies
+Completion of Phase 24.
+
+### 21. Risks
+Potential breakage in shared types or database schema conflicts.
+
+### 22. Future Extension
+Architecture designed loosely to support microservices isolation later.
+
+---
+
+### Sub-Phase Implementation Prompts
+
+> *Copy and paste these exact prompts to the AI to execute development.*
+
+#### [SP-25.01] DB: Models & Migrations for Production CI/CD
+
+```text
+TASK ID: SP-25.01
+PHASE / SUB-PHASE: 25 — Production Deployment & CI/CD / 25.01 DB: Models & Migrations for Production CI/CD
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: DB: Models & Migrations for Production CI/CD.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 25.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-25.02] API: Service Layer logic for Production CI/CD
+
+```text
+TASK ID: SP-25.02
+PHASE / SUB-PHASE: 25 — Production Deployment & CI/CD / 25.02 API: Service Layer logic for Production CI/CD
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Service Layer logic for Production CI/CD.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 25.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-25.03] API: Route Controllers for Production CI/CD
+
+```text
+TASK ID: SP-25.03
+PHASE / SUB-PHASE: 25 — Production Deployment & CI/CD / 25.03 API: Route Controllers for Production CI/CD
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: API: Route Controllers for Production CI/CD.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 25.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-25.04] UI: API Client Hooks & State for Production CI/CD
+
+```text
+TASK ID: SP-25.04
+PHASE / SUB-PHASE: 25 — Production Deployment & CI/CD / 25.04 UI: API Client Hooks & State for Production CI/CD
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: API Client Hooks & State for Production CI/CD.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 25.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
+
+#### [SP-25.05] UI: React Components & Validation for Production CI/CD
+
+```text
+TASK ID: SP-25.05
+PHASE / SUB-PHASE: 25 — Production Deployment & CI/CD / 25.05 UI: React Components & Validation for Production CI/CD
+
+CONTEXT:
+You are building a premium Enterprise IAM Platform. Read docs/01_CONSTITUTION.md through docs/13_ARCHITECTURE_DECISION_RECORDS.md. Architecture must strictly follow the UI -> Hook -> TanStack Query -> API Client flow. Never use inline fetch or axios in components.
+
+TASK:
+Design and implement the engineering requirements for: UI: React Components & Validation for Production CI/CD.
+
+REQUIREMENTS:
+- Write domain-driven FastAPI backend code if applicable.
+- Write dumb UI components and smart Custom Hooks if applicable.
+- Use Zod for frontend validation and Pydantic for backend validation.
+- Observe the security and testing requirements defined in Phase 25.
+
+ACCEPTANCE CRITERIA:
+- All changes must compile without TypeScript or MyPy errors.
+- Provide a Walkthrough report summarizing the completed integration.
+```
 
