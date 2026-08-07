@@ -12,7 +12,7 @@ export function Header({ className, onMenuClick, userProfileSlot, ...props }: He
   return (
     <header
       className={cn(
-        "flex h-14 items-center justify-between border-b border-gray-200 bg-white px-4 sm:px-6 dark:border-gray-800 dark:bg-gray-950",
+        "flex h-14 items-center justify-between border-b border-white/40 bg-white/60 backdrop-blur-xl px-4 sm:px-6 dark:border-white/10 dark:bg-black/40",
         className
       )}
       {...props}

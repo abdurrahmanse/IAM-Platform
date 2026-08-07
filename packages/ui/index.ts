@@ -7,4 +7,7 @@ export * from "./components/Sidebar"
 export * from "./components/Header"
 export * from "./components/Footer"
 export * from "./components/AppLayout"
+export * from "./components/Card"
+export * from "./components/Label"
+export * from "./components/DropdownMenu"
 export * from "./lib/utils";

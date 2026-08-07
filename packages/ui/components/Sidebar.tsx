@@ -23,8 +23,8 @@ const defaultItems: SidebarItem[] = [
 
 export function Sidebar({ className, items = defaultItems, onItemClick, ...props }: SidebarProps) {
   return (
-    <div className={cn("flex h-full w-64 flex-col border-r border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950", className)} {...props}>
-      <div className="flex h-14 items-center border-b border-gray-200 px-4 dark:border-gray-800">
+    <div className={cn("flex h-full w-64 flex-col border-r border-white/40 bg-white/60 backdrop-blur-xl dark:border-white/10 dark:bg-black/40", className)} {...props}>
+      <div className="flex h-14 items-center border-b border-white/40 px-4 dark:border-white/10">
         <div className="flex items-center gap-2 font-semibold tracking-tight">
           <Shield className="h-6 w-6 text-brand-600 dark:text-brand-400" />
           <span>IAM Platform</span>
@@ -43,10 +43,10 @@ export function Sidebar({ className, items = defaultItems, onItemClick, ...props
                 }
               }}
               className={cn(
-                "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                 item.current
-                  ? "bg-brand-50 text-brand-700 dark:bg-brand-900/50 dark:text-brand-400"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-50"
+                  ? "bg-white/80 text-brand-700 shadow-sm dark:bg-white/20 dark:text-brand-400"
+                  : "text-gray-700 hover:bg-white/40 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-white/10 dark:hover:text-gray-50"
               )}
             >
               <item.icon className={cn("h-4 w-4", item.current ? "text-brand-700 dark:text-brand-400" : "text-gray-500 dark:text-gray-400")} />

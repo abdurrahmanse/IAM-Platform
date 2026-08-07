@@ -15,7 +15,7 @@ export default function Home() {
         </h1>
         
         <p className="text-lg text-text-secondary mb-10 leading-relaxed max-w-xl mx-auto dark:text-gray-300">
-          The foundation of your organization's security posture. Unified authentication, zero-trust authorization, and seamless user lifecycle management.
+          The foundation of your organizations security posture. Unified authentication, zero-trust authorization, and seamless user lifecycle management.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
