@@ -9,7 +9,7 @@ describe("Button component", () => {
     const button = screen.getByRole("button", { name: /click me/i })
     expect(button).toBeInTheDocument()
     expect(button).toHaveClass("from-brand-600") // default variant
-    expect(button).toHaveClass("h-10") // default size
+    expect(button).toHaveClass("h-12") // default size
   })
 
   it("applies the destructive variant classes", () => {
@@ -21,7 +21,7 @@ describe("Button component", () => {
   it("applies the sm size classes", () => {
     render(<Button size="sm">Small</Button>)
     const button = screen.getByRole("button", { name: /small/i })
-    expect(button).toHaveClass("h-9")
+    expect(button).toHaveClass("h-10")
   })
 
   it("passes standard HTML attributes", () => {

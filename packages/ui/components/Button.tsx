@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-base font-semibold transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
   {
     variants: {
       variant: {
@@ -14,17 +14,17 @@ const buttonVariants = cva(
         destructive:
           "bg-gradient-to-r from-red-600 to-red-500 text-white shadow-md shadow-red-500/20 hover:shadow-lg hover:shadow-red-500/40 hover:-translate-y-0.5",
         outline:
-          "border border-gray-200 bg-transparent hover:bg-gray-50 text-gray-900 shadow-sm dark:border-gray-800 dark:hover:bg-gray-900/50 dark:text-gray-100",
+          "border-2 border-gray-200 bg-transparent hover:bg-gray-50 text-gray-900 shadow-sm dark:border-gray-800 dark:hover:bg-gray-900/50 dark:text-gray-100",
         secondary:
           "bg-gray-100/80 backdrop-blur-sm text-gray-900 hover:bg-gray-200/80 dark:bg-gray-800/80 dark:text-gray-50 dark:hover:bg-gray-700/80 shadow-sm",
         ghost: "hover:bg-gray-100/50 hover:text-gray-900 dark:hover:bg-gray-800/50 dark:hover:text-gray-50",
         link: "text-brand-600 underline-offset-4 hover:underline dark:text-brand-400",
       },
       size: {
-        default: "h-10 px-5 py-2",
-        sm: "h-9 rounded-md px-4 text-xs",
-        lg: "h-12 rounded-xl px-8 text-base",
-        icon: "h-10 w-10",
+        default: "h-12 px-6 py-2",
+        sm: "h-10 rounded-lg px-4 text-sm",
+        lg: "h-14 rounded-2xl px-10 text-lg",
+        icon: "h-12 w-12",
       },
     },
     defaultVariants: {
