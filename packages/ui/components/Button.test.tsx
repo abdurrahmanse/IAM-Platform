@@ -8,20 +8,20 @@ describe("Button component", () => {
     render(<Button>Click me</Button>)
     const button = screen.getByRole("button", { name: /click me/i })
     expect(button).toBeInTheDocument()
-    expect(button).toHaveClass("from-brand-600") // default variant
-    expect(button).toHaveClass("h-12") // default size
+    expect(button).toHaveClass("bg-white/20") // default variant
+    expect(button).toHaveClass("h-10") // default size
   })
 
   it("applies the destructive variant classes", () => {
     render(<Button variant="destructive">Delete</Button>)
     const button = screen.getByRole("button", { name: /delete/i })
-    expect(button).toHaveClass("from-red-600")
+    expect(button).toHaveClass("bg-red-500/80")
   })
 
   it("applies the sm size classes", () => {
     render(<Button size="sm">Small</Button>)
     const button = screen.getByRole("button", { name: /small/i })
-    expect(button).toHaveClass("h-10")
+    expect(button).toHaveClass("h-9")
   })
 
   it("passes standard HTML attributes", () => {
@@ -39,6 +39,6 @@ describe("Button component", () => {
     const link = screen.getByRole("link", { name: /link button/i })
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute("href", "/test")
-    expect(link).toHaveClass("from-brand-600") // button classes should be merged onto the child
+    expect(link).toHaveClass("bg-white/20") // button classes should be merged onto the child
   })
 })
