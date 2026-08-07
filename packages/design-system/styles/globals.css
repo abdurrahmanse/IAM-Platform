@@ -18,8 +18,8 @@
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
   
-  --font-sans: "Inter", "Helvetica", "Arial", sans-serif;
-  --font-mono: "Fira Code", monospace;
+  --font-sans: var(--font-rajdhani), "Inter", "Helvetica", "Arial", sans-serif;
+  --font-mono: var(--font-geist-mono), "Fira Code", monospace;
   
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
