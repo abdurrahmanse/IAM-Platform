@@ -1,4 +1,13 @@
 import { Button, Input } from "@iam/ui"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@iam/ui"
 
 export default function AdminConsole() {
   return (
@@ -20,7 +29,28 @@ export default function AdminConsole() {
           </Button>
           
           <div className="flex justify-between mt-4">
-            <Button variant="outline" className="w-full mr-2">SSO Login</Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="w-full mr-2">SSO Login</Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Enterprise SSO Provider</DialogTitle>
+                  <DialogDescription>
+                    Enter your corporate email address to authenticate via your identity provider.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="flex flex-col gap-2">
+                    <Input id="sso-email" placeholder="jane.doe@company.com" />
+                  </div>
+                </div>
+                <DialogFooter>
+                  <Button type="submit">Continue with SAML</Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+            
             <Button variant="ghost" className="w-full ml-2">Forgot Password?</Button>
           </div>
         </div>
