@@ -5,56 +5,24 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../lib/utils"
 
-/**
- * Button — built on @radix-ui/react-slot (Radix UI)
- *
- * Variants:
- *   default    — Solid brand-indigo primary CTA
- *   secondary  — Frosted glass secondary action
- *   destructive — Solid red danger action
- *   outline    — Bordered ghost with brand color
- *   ghost      — Transparent with hover fill
- *   link       — Underline link style
- *
- * Sizes: sm | default | lg | icon
- * Props: loading (shows spinner), asChild (Radix Slot composition)
- */
-
 const buttonVariants = cva(
   [
-    // Base layout
     "relative inline-flex items-center justify-center gap-2 whitespace-nowrap",
-    // Typography
-    "font-semibold tracking-[0.01em] leading-none",
-    // Behaviour
-    "select-none cursor-pointer",
-    // Transitions
+    "font-semibold tracking-[0.01em] leading-none select-none cursor-pointer",
     "transition-all duration-150 ease-out",
-    // Focus (always visible for a11y)
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950",
-    // Disabled
-    "disabled:pointer-events-none disabled:opacity-40",
-    // Press feedback
-    "active:scale-[0.97]",
+    "disabled:pointer-events-none disabled:opacity-40 active:scale-[0.97]",
   ].join(" "),
   {
     variants: {
       variant: {
-        /**
-         * PRIMARY — solid indigo, high contrast, strong shadow
-         */
         default: [
           "bg-indigo-600 text-white",
           "shadow-[0_1px_2px_rgba(79,70,229,0.3),inset_0_1px_0_rgba(255,255,255,0.15)]",
-          "hover:bg-indigo-500",
-          "hover:shadow-[0_4px_12px_rgba(79,70,229,0.5)]",
+          "hover:bg-indigo-500 hover:shadow-[0_4px_12px_rgba(79,70,229,0.5)]",
           "focus-visible:ring-indigo-500",
           "dark:bg-indigo-500 dark:hover:bg-indigo-400",
         ].join(" "),
-
-        /**
-         * SECONDARY — glass / frosted white, for complementary actions
-         */
         secondary: [
           "bg-white text-gray-900 dark:bg-gray-800 dark:text-gray-100",
           "border border-gray-200 dark:border-gray-700",
@@ -63,48 +31,32 @@ const buttonVariants = cva(
           "hover:border-gray-300 dark:hover:border-gray-600",
           "focus-visible:ring-gray-400 dark:focus-visible:ring-gray-600",
         ].join(" "),
-
-        /**
-         * DESTRUCTIVE — solid red for danger/delete
-         */
         destructive: [
           "bg-red-600 text-white",
           "shadow-[0_1px_2px_rgba(220,38,38,0.3),inset_0_1px_0_rgba(255,255,255,0.1)]",
-          "hover:bg-red-500",
-          "hover:shadow-[0_4px_12px_rgba(220,38,38,0.5)]",
+          "hover:bg-red-500 hover:shadow-[0_4px_12px_rgba(220,38,38,0.5)]",
           "focus-visible:ring-red-500",
         ].join(" "),
-
-        /**
-         * OUTLINE — bordered, brand tinted
-         */
         outline: [
           "border-2 border-indigo-200 text-indigo-700 dark:border-indigo-800 dark:text-indigo-300",
           "hover:bg-indigo-50 dark:hover:bg-indigo-950/40",
           "focus-visible:ring-indigo-500",
         ].join(" "),
-
-        /**
-         * GHOST — invisible until hovered
-         */
         ghost: [
           "text-gray-700 dark:text-gray-300",
           "hover:bg-gray-100 dark:hover:bg-gray-800",
           "focus-visible:ring-gray-400",
         ].join(" "),
-
         link: [
           "text-indigo-600 dark:text-indigo-400",
-          "underline-offset-4 hover:underline",
-          "focus-visible:ring-indigo-500",
+          "underline-offset-4 hover:underline focus-visible:ring-indigo-500",
         ].join(" "),
       },
-
       size: {
-        sm:      "h-9   px-3.5 text-xs  rounded-lg  gap-1.5",
-        default: "h-11  px-5   text-sm  rounded-xl  gap-2",
-        lg:      "h-13  px-7   text-base rounded-xl  gap-2.5",
-        icon:    "h-9   w-9    text-sm  rounded-lg",
+        sm:      "h-9  px-3.5 text-xs  rounded-lg  gap-1.5",
+        default: "h-11 px-5   text-sm  rounded-xl  gap-2",
+        lg:      "h-13 px-7   text-base rounded-xl  gap-2.5",
+        icon:    "h-9  w-9   text-sm  rounded-lg",
       },
     },
     defaultVariants: {
@@ -134,13 +86,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading ? (
           <>
-            <svg
-              className="h-4 w-4 animate-spin shrink-0"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
+            <svg className="h-4 w-4 animate-spin shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
             </svg>
