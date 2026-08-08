@@ -34,11 +34,14 @@ Applied to every single feature, screen, and component that requires data.
 
 ## Required Tools
 - Next.js App Router
-- React 18+
-- Tailwind CSS & shadcn/ui
-- TanStack Query
-- Zustand
-- React Hook Form + Zod
+- React 19+
+- **Radix UI** (`@radix-ui/*`) — the ONLY permitted UI framework
+- Tailwind CSS v4
+- class-variance-authority (CVA) for component variants
+- Lucide React for icons
+- TanStack Query (server state)
+- Zustand (global client state)
+- React Hook Form + Zod (forms & validation)
 
 ## Forbidden Practices
 - `Component -> fetch()`

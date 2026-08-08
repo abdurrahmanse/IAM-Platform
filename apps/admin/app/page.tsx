@@ -8,145 +8,222 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@iam/ui"
-import { Mail, Lock, ShieldCheck, KeyRound, Building2 } from "lucide-react"
+import {
+  Mail,
+  Lock,
+  ShieldCheck,
+  Building2,
+  ArrowRight,
+  Fingerprint,
+  CheckCircle2,
+} from "lucide-react"
 
-export default function AdminConsole() {
+export default function AdminLoginPage() {
   return (
-    <main className="min-h-screen bg-gray-50 flex items-center justify-center p-4 sm:p-8 relative overflow-hidden dark:bg-gray-950 font-sans">
-      {/* Dynamic Background Orbs */}
-      <div className="absolute top-[-10%] left-[-5%] w-[600px] h-[600px] bg-brand-500/15 rounded-full blur-[120px] pointer-events-none mix-blend-multiply dark:mix-blend-screen dark:bg-brand-500/10 animate-pulse-slow" />
-      <div className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-600/15 rounded-full blur-[120px] pointer-events-none mix-blend-multiply dark:mix-blend-screen dark:bg-blue-600/10 animate-pulse-slow" style={{ animationDelay: '2s' }} />
+    <main className="relative flex min-h-screen overflow-hidden bg-gray-950">
+      {/* ── Background ─────────────────────────────────────────── */}
+      {/* Ambient glow orbs */}
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-indigo-600/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -bottom-40 -right-40 h-[600px] w-[600px] rounded-full bg-violet-600/15 blur-[120px]" />
+      {/* Subtle dot grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, #fff 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
 
-      {/* Main Login Card - Split Layout */}
-      <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[2rem] shadow-2xl shadow-gray-900/10 w-full max-w-[1000px] relative z-10 dark:bg-gray-900/60 dark:border-gray-800/60 dark:shadow-black/50 overflow-hidden flex flex-col md:flex-row">
-        
-        {/* Left Side - Branding & Info */}
-        <div className="hidden md:flex flex-col justify-between w-5/12 bg-gradient-to-br from-brand-600 to-brand-800 p-12 text-white relative overflow-hidden">
-          {/* Subtle noise/pattern overlay */}
-          <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none mix-blend-overlay"></div>
-          
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-12">
-              <div className="w-10 h-10 bg-white/20 rounded-xl backdrop-blur-sm flex items-center justify-center border border-white/20 shadow-inner">
-                <ShieldCheck className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold tracking-tight">IAM Platform</span>
+      {/* ── Left panel — branding (desktop only) ──────────────── */}
+      <aside className="hidden lg:flex lg:w-[480px] xl:w-[560px] flex-col justify-between p-12 xl:p-16 relative shrink-0">
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 shadow-lg shadow-indigo-600/30">
+            <ShieldCheck className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-lg font-bold text-white tracking-tight">IAM Platform</span>
+        </div>
+
+        {/* Hero text */}
+        <div className="space-y-8">
+          <div className="space-y-4">
+            <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-300 tracking-widest uppercase">
+              Enterprise Identity
             </div>
-            
-            <h2 className="text-4xl font-extrabold leading-tight mb-6">
-              Secure access,<br/>
-              <span className="text-brand-200">simplified.</span>
-            </h2>
-            <p className="text-brand-100 text-lg font-medium leading-relaxed">
-              Enterprise-grade identity management tailored for modern infrastructure.
+            <h1 className="text-4xl xl:text-5xl font-extrabold leading-[1.1] text-white tracking-tight">
+              Secure access.<br />
+              <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+                Zero compromise.
+              </span>
+            </h1>
+            <p className="text-base text-gray-400 leading-relaxed max-w-sm">
+              Enterprise-grade identity and access management designed for modern cloud infrastructure.
             </p>
           </div>
 
-          <div className="relative z-10 flex items-center gap-4 text-sm text-brand-200/80 bg-black/10 p-4 rounded-2xl backdrop-blur-md border border-white/10">
-            <KeyRound className="w-8 h-8 text-brand-200" />
-            <p>Protected by zero-trust architecture and advanced encryption.</p>
+          {/* Feature bullets */}
+          <ul className="space-y-3">
+            {[
+              "Multi-factor authentication built in",
+              "Role-based access control (RBAC)",
+              "Real-time audit logs & compliance",
+            ].map((f) => (
+              <li key={f} className="flex items-center gap-2.5 text-sm text-gray-400">
+                <CheckCircle2 className="h-4 w-4 shrink-0 text-indigo-400" aria-hidden="true" />
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          {/* Trust badge */}
+          <div className="flex items-center gap-3 rounded-2xl border border-white/5 bg-white/[0.03] px-4 py-3">
+            <Fingerprint className="h-5 w-5 shrink-0 text-indigo-400" aria-hidden="true" />
+            <p className="text-xs text-gray-500 leading-snug">
+              Protected by zero-trust architecture and AES-256 encryption. SOC 2 Type II compliant.
+            </p>
           </div>
         </div>
 
-        {/* Right Side - Form */}
-        <div className="w-full md:w-7/12 p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
-          <div className="max-w-[400px] mx-auto w-full">
-            <div className="mb-10 text-center md:text-left">
-              <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-3">
-                Welcome back
-              </h1>
-              <p className="text-base text-gray-500 dark:text-gray-400 font-medium">
-                Please enter your credentials to access the admin console.
+        {/* Footer note */}
+        <p className="text-xs text-gray-700">
+          &copy; {new Date().getFullYear()} IAM Platform. Enterprise Edition.
+        </p>
+      </aside>
+
+      {/* ── Right panel — login form ───────────────────────────── */}
+      <div className="flex flex-1 items-center justify-center px-4 py-12 sm:px-8">
+        <div className="w-full max-w-[420px]">
+          {/* Mobile logo */}
+          <div className="mb-8 flex items-center gap-2.5 lg:hidden">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600">
+              <ShieldCheck className="h-4 w-4 text-white" />
+            </div>
+            <span className="text-base font-bold text-white tracking-tight">IAM Platform</span>
+          </div>
+
+          {/* Card */}
+          <div className="rounded-2xl border border-white/8 bg-gray-900 p-8 shadow-2xl shadow-black/50">
+            {/* Heading */}
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-white mb-1.5 tracking-tight">
+                Admin Console
+              </h2>
+              <p className="text-sm text-gray-500">
+                Sign in with your admin credentials to continue.
               </p>
             </div>
-            
-            <div className="flex flex-col gap-6">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-gray-700 dark:text-gray-300 tracking-wide">
-                  WORK EMAIL
-                </label>
-                <Input 
-                  type="email" 
-                  placeholder="name@enterprise.com" 
-                  startIcon={<Mail className="w-5 h-5" />}
-                />
-              </div>
-              
-              <div className="space-y-2">
+
+            {/* Form */}
+            <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              {/* Email */}
+              <Input
+                type="email"
+                label="Work Email"
+                placeholder="name@enterprise.com"
+                autoComplete="email"
+                startIcon={<Mail className="h-4 w-4" />}
+              />
+
+              {/* Password */}
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-bold text-gray-700 dark:text-gray-300 tracking-wide">
-                    PASSWORD
+                  <label className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+                    Password
                   </label>
-                  <a href="#" className="text-sm font-semibold text-brand-600 hover:text-brand-500 dark:text-brand-400 transition-colors">
+                  <a
+                    href="#"
+                    className="text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors focus:outline-none focus-visible:underline"
+                  >
                     Forgot password?
                   </a>
                 </div>
-                <Input 
-                  type="password" 
-                  placeholder="••••••••••••" 
-                  startIcon={<Lock className="w-5 h-5" />}
+                <Input
+                  type="password"
+                  placeholder="Enter your password"
+                  autoComplete="current-password"
+                  startIcon={<Lock className="h-4 w-4" />}
                 />
               </div>
-              
-              <div className="flex items-center gap-2 mt-2">
-                <input 
-                  type="checkbox" 
-                  id="remember" 
-                  className="w-4 h-4 rounded border-gray-300 text-brand-600 focus:ring-brand-500 dark:border-gray-700 dark:bg-gray-900 dark:checked:bg-brand-500 transition-colors cursor-pointer"
+
+              {/* Remember me */}
+              <label className="flex cursor-pointer items-center gap-2.5 select-none">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  className="h-4 w-4 rounded border-gray-700 bg-gray-800 accent-indigo-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900 cursor-pointer transition-colors"
                 />
-                <label htmlFor="remember" className="text-sm font-medium text-gray-600 dark:text-gray-400 cursor-pointer select-none">
+                <span className="text-sm text-gray-400">
                   Keep me signed in for 7 days
-                </label>
-              </div>
+                </span>
+              </label>
 
-              <Button className="w-full mt-4 text-lg shadow-brand-500/25">
+              {/* Primary CTA */}
+              <Button type="submit" className="w-full">
                 Sign In to Console
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Button>
-              
-              <div className="relative my-8">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
-                </div>
-                <div className="relative flex justify-center text-sm font-medium">
-                  <span className="bg-white px-4 text-gray-500 dark:bg-gray-900 dark:text-gray-400 rounded-full border border-gray-100 dark:border-gray-800 shadow-sm">
-                    Enterprise
-                  </span>
-                </div>
-              </div>
+            </form>
 
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="secondary" className="w-full text-base group">
-                    <Building2 className="w-5 h-5 mr-2 text-gray-500 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white transition-colors" />
-                    Sign in with SSO
-                  </Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle className="text-2xl">Single Sign-On</DialogTitle>
-                    <DialogDescription className="text-base pt-2">
-                      Enter your corporate email address to authenticate via your identity provider (Okta, Entra ID, etc.).
-                    </DialogDescription>
-                  </DialogHeader>
-                  <div className="grid gap-4 py-6">
-                    <div className="flex flex-col gap-3">
-                      <label className="text-sm font-bold tracking-wide">ORGANIZATION EMAIL</label>
-                      <Input 
-                        id="sso-email" 
-                        placeholder="jane.doe@company.com" 
-                        startIcon={<Building2 className="w-5 h-5" />}
-                      />
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button type="submit" className="w-full text-lg">Continue to IdP</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
+            {/* Divider */}
+            <div className="my-6 flex items-center gap-3">
+              <div className="h-px flex-1 bg-gray-800" />
+              <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
+                Enterprise SSO
+              </span>
+              <div className="h-px flex-1 bg-gray-800" />
             </div>
+
+            {/* SSO dialog trigger */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="secondary" className="w-full">
+                  <Building2 className="h-4 w-4" aria-hidden="true" />
+                  Continue with SSO
+                </Button>
+              </DialogTrigger>
+
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Single Sign-On</DialogTitle>
+                  <DialogDescription>
+                    Enter your corporate email to authenticate via your identity provider (Okta, Microsoft Entra ID, etc.).
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="py-2">
+                  <Input
+                    id="sso-email"
+                    type="email"
+                    label="Organization Email"
+                    placeholder="you@company.com"
+                    startIcon={<Building2 className="h-4 w-4" />}
+                  />
+                </div>
+
+                <DialogFooter>
+                  <Button type="submit" className="w-full">
+                    Continue to Identity Provider
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
           </div>
+
+          {/* Security note */}
+          <p className="mt-6 text-center text-xs text-gray-700">
+            By signing in you agree to our{" "}
+            <a href="#" className="text-gray-600 underline-offset-2 hover:underline hover:text-gray-400 transition-colors">
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a href="#" className="text-gray-600 underline-offset-2 hover:underline hover:text-gray-400 transition-colors">
+              Privacy Policy
+            </a>.
+          </p>
         </div>
       </div>
     </main>
-  );
+  )
 }
