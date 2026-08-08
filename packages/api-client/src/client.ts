@@ -1,37 +1,25 @@
 import axios from "axios"
 
 export const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "/api",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: process.env.NEXT_PUBLIC_API_URL ?? "/api",
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
 })
 
-// Add a request interceptor
-apiClient.interceptors.request.use(
-  (config) => {
-    // In a real implementation, we would get the token from localStorage or cookies
-    // const token = localStorage.getItem('token')
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`
-    // }
-    return config
-  },
-  (error) => {
-    return Promise.reject(error)
+apiClient.interceptors.request.use((config) => {
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("iam_access_token")
+    if (token) config.headers.Authorization = `Bearer ${token}`
   }
-)
+  return config
+})
 
-// Add a response interceptor
 apiClient.interceptors.response.use(
-  (response) => {
-    return response
-  },
+  (response) => response,
   (error) => {
-    // Handle 401 Unauthorized globally
-    if (error.response?.status === 401) {
-      // e.g. trigger logout, redirect to login
-      console.warn("Unauthorized access detected. Please log in.")
+    if (error.response?.status === 401 && typeof window !== "undefined") {
+      localStorage.removeItem("iam_access_token")
+      window.location.href = "/"
     }
     return Promise.reject(error)
   }

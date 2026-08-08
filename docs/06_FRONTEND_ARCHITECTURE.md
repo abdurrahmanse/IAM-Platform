@@ -1,55 +1,117 @@
 # 06 FRONTEND ARCHITECTURE
 
 ## Objective
-To establish a rigid, highly scalable enterprise frontend architecture using Next.js and React.
+Establish a rigid, scalable enterprise frontend architecture using Next.js App Router and React 19.
 
-## Why
-Modern web applications easily degrade into unmaintainable states when state management and data fetching are handled inconsistently.
+---
 
 ## Strict Data Flow (MANDATORY)
-The documentation explicitly enforces this architecture:
 
-`UI` -> `Custom Hook` -> `TanStack Query` -> `API Client` -> `HTTP Layer` -> `Backend API`
+```
+UI Component
+    ↓
+Custom Hook  (e.g. useLogin, useUsers)
+    ↓
+TanStack Query  (useQuery / useMutation)
+    ↓
+API Client  (@iam/api-client → authApi, usersApi, …)
+    ↓
+HTTP Layer  (Axios instance with token injection)
+    ↓
+FastAPI Backend
+```
 
-## State Management Definitions
-- **Server State:** Handled EXCLUSIVELY by **TanStack Query** (React Query).
-- **Global State:** Handled EXCLUSIVELY by **Zustand**.
-- **Local State:** Handled by standard React `useState`.
-- **Forms:** Handled EXCLUSIVELY by **React Hook Form**.
-- **Validation:** Handled EXCLUSIVELY by **Zod**.
+**Never**: `Component → fetch()` or `Component → axios()` directly.
 
-## How
-- All API requests are abstracted into a centralized Axios (or native fetch wrapper) client inside `packages/api-client`.
-- React components import custom hooks (e.g., `useUser()`, `useLoginMutation()`).
-- These custom hooks wrap `useQuery` or `useMutation` from TanStack Query.
-- The TanStack Query functions call the `api-client`.
+---
 
-## When
-Applied to every single feature, screen, and component that requires data.
+## Feature-Based Folder Structure
 
-## Best Practices
-- Feature-based architecture: Group files by feature (e.g., `features/auth/hooks/useLogin.ts`, `features/auth/components/LoginForm.tsx`) rather than globally separating all hooks and all components.
-- Error Boundaries: Implement at the route level to prevent entire application crashes.
-- Loading Skeletons: Use `Suspense` and explicit skeleton components instead of simple loading spinners.
+All admin features live under `apps/admin/features/`:
+
+```
+apps/admin/
+  app/                          ← Next.js pages (thin shells only)
+    page.tsx                    ← renders <LoginForm />
+    dashboard/
+      page.tsx                  ← renders dashboard components
+  features/
+    auth/
+      services/auth.service.ts  ← calls API client, manages tokens
+      hooks/useLogin.ts         ← useMutation wrapping authService
+      components/LoginForm.tsx  ← dumb form component
+      components/PasswordInput.tsx
+    users/
+      services/users.service.ts
+      hooks/useUsers.ts
+      hooks/useCreateUser.ts
+      components/UsersTable.tsx
+    roles/
+    permissions/
+    sessions/
+    audit/
+```
+
+**Rule**: Page files in `app/` contain zero business logic. They import from `features/`.
+
+---
+
+## State Management
+
+| State type    | Tool                          | Where                        |
+| ------------- | ----------------------------- | ---------------------------- |
+| Server state  | **TanStack Query**            | `features/*/hooks/`          |
+| Global client | **Zustand** (future)          | `stores/` (when needed)      |
+| Local UI      | `React.useState`              | inside the component         |
+| Forms         | **React Hook Form + Zod**     | `features/*/components/`     |
+
+---
+
+## Shared Packages
+
+| Package              | Purpose                                  |
+| -------------------- | ---------------------------------------- |
+| `@iam/types`         | Shared TypeScript interfaces & types     |
+| `@iam/validation`    | Shared Zod schemas                       |
+| `@iam/api-client`    | Axios instance + TanStack QueryProvider + API modules |
+| `@iam/ui`            | Radix UI component library               |
+| `@iam/design-system` | Tailwind v4 tokens + globals.css         |
+| `@iam/hooks`         | Shared custom hooks (future)             |
+
+---
 
 ## Required Tools
-- Next.js App Router
+
+- Next.js App Router (v16+)
 - React 19+
 - **Radix UI** (`@radix-ui/*`) — the ONLY permitted UI framework
 - Tailwind CSS v4
 - class-variance-authority (CVA) for component variants
 - Lucide React for icons
-- TanStack Query (server state)
-- Zustand (global client state)
+- TanStack Query v5 (server state)
 - React Hook Form + Zod (forms & validation)
+- Zustand (global client state, only when truly needed)
+- Axios (HTTP client, via `@iam/api-client` only)
+
+---
 
 ## Forbidden Practices
-- `Component -> fetch()`
-- `Component -> axios()`
-- Direct network requests inside UI components.
-- Prop drilling for deep global state.
+
+| ❌ Forbidden                                      | ✅ Instead                                |
+| ------------------------------------------------- | ----------------------------------------- |
+| `Component → fetch()` or `Component → axios()`   | Use a custom hook → TanStack Query        |
+| Business logic in page files                      | Move to `features/*/services/` or hooks   |
+| Direct `apiClient` calls in components            | Wrap in a service function                |
+| Prop drilling for deep global state               | Zustand store (sparingly)                 |
+| Hardcoded API URLs                                | `NEXT_PUBLIC_API_URL` env var via client  |
+| Multiple UI frameworks                            | Radix UI only                             |
+
+---
 
 ## Success Criteria
-- UI components contain zero HTTP logic.
-- Forms are fully type-safe from the input field down to the API payload.
-- Server state is aggressively cached and optimistic updates are utilized for a snappy UX.
+
+- UI components contain zero HTTP or business logic
+- Forms are type-safe from input → Zod schema → API payload
+- Every feature follows the service → hook → component layering
+- Server state is cached via TanStack Query with appropriate stale times
+- Changing the API base URL requires editing exactly one env variable
