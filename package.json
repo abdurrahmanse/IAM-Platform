@@ -1,0 +1,23 @@
+{
+  "name": "iam-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "clean:ports": "lsof -ti:3000,3001,3002,3003,3004,8000 | xargs kill -9 || true",
+    "dev": "pnpm run clean:ports && concurrently -c \"cyan,magenta\" -n \"WEB,API\" \"pnpm run dev:web\" \"pnpm run dev:api\"",
+    "dev:web": "turbo run dev",
+    "dev:api": "cd apps/api && source .venv/bin/activate && uvicorn main:app --reload --port 8000",
+    "lint": "turbo run lint",
+    "test": "turbo run test"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.4",
+    "turbo": "^2.0.0",
+    "typescript": "^5.0.0"
+  },
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

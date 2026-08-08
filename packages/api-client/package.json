@@ -1,0 +1,14 @@
+{
+  "name": "@iam/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@iam/config-typescript": "workspace:*"
+  }
+}
