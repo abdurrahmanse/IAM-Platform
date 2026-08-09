@@ -20,6 +20,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@iam/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@iam/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -63,6 +66,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@iam/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@iam/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -106,6 +112,9 @@ importers:
 
   apps/portal:
     dependencies:
+      '@iam/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@iam/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -149,6 +158,9 @@ importers:
 
   apps/setup:
     dependencies:
+      '@iam/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@iam/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -192,6 +204,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@iam/api-client':
+        specifier: workspace:*
+        version: link:../../packages/api-client
       '@iam/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -235,13 +250,31 @@ importers:
 
   packages/api-client:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.0.0
+        version: 5.101.4(react@19.2.8)
+      '@tanstack/react-query-devtools':
+        specifier: ^5.0.0
+        version: 5.101.4(@tanstack/react-query@5.101.4(react@19.2.8))(react@19.2.8)
       axios:
         specifier: ^1.6.0
         version: 1.19.0
+      react:
+        specifier: ^19.0.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.8(react@19.2.8)
     devDependencies:
       '@iam/config-typescript':
         specifier: workspace:*
         version: link:../config-typescript
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.4(@types/react@19.2.18)
       typescript:
         specifier: ^5.0.0
         version: 5.9.3
@@ -805,6 +838,23 @@ packages:
 
   '@tailwindcss/postcss@4.3.3':
     resolution: {integrity: sha512-JTSZZGQi1AyKirbLN3azmjVzef92tcX7h+iSqPdaeStyFpGpDlKvvpxeOE8njhbUanbRwr3z8DyzhICWnMtQeg==}
+
+  '@tanstack/query-core@5.101.4':
+    resolution: {integrity: sha512-gNwcvOJcRbLWPOLG/2OBm+zM+Yv+MKsXKEOWC57USuZDEsI71hEErQsiEGx5wX9rzWWkfwM0fVSPoiIFSsxfiw==}
+
+  '@tanstack/query-devtools@5.101.4':
+    resolution: {integrity: sha512-z5IPHnDX3aUWeTWlRKLyooBQekaCAw4xRpZqPQ390RiWTDBcTynjpPT221BArw0u2+pnQMdGvPQI9YNNubBcmA==}
+
+  '@tanstack/react-query-devtools@5.101.4':
+    resolution: {integrity: sha512-VeK2gtmfj7kvRBjtxS7TKxt/6qKhn8VzabY4UiYMr7NV9CddjSRYRgeYyld+NpjAkgMV9dd+2Qdr8ah5I03NeA==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.101.4
+      react: ^18 || ^19
+
+  '@tanstack/react-query@5.101.4':
+    resolution: {integrity: sha512-yRg2pfOCxIs4ZJW3XYYHU/WgtD04FHSnfHlpRT7h7pR77hwkdRG4wxbKe4aq6P0RvXUTBSQpQeadS1SUYUe+KA==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@turbo/darwin-64@2.10.9':
     resolution: {integrity: sha512-Jh+pTGXLNz8+1tkUU13TI/f+ZOI+OvC4YbHi1H+57iSpLt5DR3xgptd+4sA07RdjdRR/RX/01uQQu2OkbzIefA==}
@@ -2887,6 +2937,21 @@ snapshots:
       '@tailwindcss/oxide': 4.3.3
       postcss: 8.5.26
       tailwindcss: 4.3.3
+
+  '@tanstack/query-core@5.101.4': {}
+
+  '@tanstack/query-devtools@5.101.4': {}
+
+  '@tanstack/react-query-devtools@5.101.4(@tanstack/react-query@5.101.4(react@19.2.8))(react@19.2.8)':
+    dependencies:
+      '@tanstack/query-devtools': 5.101.4
+      '@tanstack/react-query': 5.101.4(react@19.2.8)
+      react: 19.2.8
+
+  '@tanstack/react-query@5.101.4(react@19.2.8)':
+    dependencies:
+      '@tanstack/query-core': 5.101.4
+      react: 19.2.8
 
   '@turbo/darwin-64@2.10.9':
     optional: true

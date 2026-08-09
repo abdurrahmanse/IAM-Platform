@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@iam/api-client": "workspace:*",
     "@iam/design-system": "workspace:*",
     "@iam/ui": "workspace:*",
     "next": "16.3.0",
