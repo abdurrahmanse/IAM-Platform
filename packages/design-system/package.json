@@ -4,6 +4,8 @@
   "private": true,
   "main": "./styles/globals.css",
   "dependencies": {
+    "tailwindcss": "^4",
+    "@tailwindcss/postcss": "^4",
     "tailwindcss-animate": "^1.0.7"
   }
 }

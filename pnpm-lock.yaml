@@ -256,9 +256,15 @@ importers:
 
   packages/design-system:
     dependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4
+        version: 4.3.3
+      tailwindcss:
+        specifier: ^4
+        version: 4.3.3
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7
+        version: 1.0.7(tailwindcss@4.3.3)
 
   packages/ui:
     dependencies:
@@ -4560,7 +4566,9 @@ snapshots:
 
   tailwind-merge@2.6.1: {}
 
-  tailwindcss-animate@1.0.7: {}
+  tailwindcss-animate@1.0.7(tailwindcss@4.3.3):
+    dependencies:
+      tailwindcss: 4.3.3
 
   tailwindcss@4.3.3: {}
 
