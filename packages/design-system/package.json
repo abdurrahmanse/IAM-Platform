@@ -1,0 +1,9 @@
+{
+  "name": "@iam/design-system",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./styles/globals.css",
+  "dependencies": {
+    "tailwindcss-animate": "^1.0.7"
+  }
+}
