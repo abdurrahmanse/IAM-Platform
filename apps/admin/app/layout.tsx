@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@iam/ui";
+import { ThemeProvider, Header } from "@iam/ui";
 import { QueryProvider } from "@iam/api-client";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <Header appName="IAM Admin" />
+            <main className="flex-1">
+              {children}
+            </main>
           </ThemeProvider>
         </QueryProvider>
       </body>
