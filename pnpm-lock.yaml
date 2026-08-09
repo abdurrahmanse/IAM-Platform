@@ -20,6 +20,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@iam/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@iam/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -60,6 +63,9 @@ importers:
 
   apps/docs:
     dependencies:
+      '@iam/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@iam/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -100,6 +106,9 @@ importers:
 
   apps/portal:
     dependencies:
+      '@iam/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@iam/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -140,6 +149,9 @@ importers:
 
   apps/setup:
     dependencies:
+      '@iam/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@iam/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -180,6 +192,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@iam/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
       '@iam/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -239,6 +254,12 @@ importers:
 
   packages/config-typescript: {}
 
+  packages/design-system:
+    dependencies:
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7
+
   packages/ui:
     dependencies:
       '@radix-ui/react-slot':
@@ -253,6 +274,9 @@ importers:
       lucide-react:
         specifier: ^0.378.0
         version: 0.378.0(react@19.2.8)
+      next-themes:
+        specifier: ^0.3.0
+        version: 0.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       react:
         specifier: ^19.0.0
         version: 19.2.8
@@ -1918,6 +1942,12 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
+  next-themes@0.3.0:
+    resolution: {integrity: sha512-/QHIrsYpd6Kfk7xakK4svpDI5mmXP0gfvCoJdGpZQ2TOrQZmsW0QxjaiLn8wbIKjtm4BTSqLoix4lxYYOnLJ/w==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18
+      react-dom: ^16.8 || ^17 || ^18
+
   next@16.3.0:
     resolution: {integrity: sha512-NEdGOzH+08eTXMUp9UYkA99Nhi5N6Thrhc1jgFOQgfgnGK/dA2hRwBpXep+exdFQrnwlRf/3Wixyp8lLBUpE2A==}
     engines: {node: '>=20.9.0'}
@@ -2243,6 +2273,11 @@ packages:
 
   tailwind-merge@2.6.1:
     resolution: {integrity: sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==}
+
+  tailwindcss-animate@1.0.7:
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
 
   tailwindcss@4.3.3:
     resolution: {integrity: sha512-gOhV3P7ufE62QDGg1zVaTgCR+EtPv92k2nIhVcVKcLmxT1sUBsQGhnZj175j+MqRt4zLF7ic+sCYjfhxMxj7YQ==}
@@ -4116,6 +4151,11 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
+  next-themes@0.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
+    dependencies:
+      react: 19.2.8
+      react-dom: 19.2.8(react@19.2.8)
+
   next@16.3.0(@babel/core@7.29.7)(@types/node@20.19.43)(react-dom@19.2.8(react@19.2.8))(react@19.2.8):
     dependencies:
       '@next/env': 16.3.0
@@ -4519,6 +4559,8 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   tailwind-merge@2.6.1: {}
+
+  tailwindcss-animate@1.0.7: {}
 
   tailwindcss@4.3.3: {}
 
