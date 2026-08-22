@@ -1,16 +1,9 @@
 {
-  "extends": "@iam/config-typescript/base.json",
+  "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "outDir": "dist",
+    "strictNullChecks": true
   },
-  "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }

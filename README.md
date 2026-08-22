@@ -1,112 +1,159 @@
-# Enterprise IAM Platform
+# Turborepo starter
 
-A production-grade, enterprise Identity and Access Management (IAM) platform built with a modern, high-performance tech stack. This monorepo leverages **Turborepo** and **pnpm workspaces** to scale gracefully across multiple frontend applications, a modular backend, and shared packages.
+This Turborepo starter is maintained by the Turborepo core team.
 
----
+## Using this example
 
-## 🚀 What's Included
+Run the following command:
 
-This monorepo is meticulously configured to include everything required for a production-ready enterprise application:
-
-### 🏗️ Architecture & Workspaces
-- **Turborepo**: High-performance build system for monorepos.
-- **pnpm Workspace**: Fast, disk space efficient package management.
-- **Root Configurations**: Centralized config files for the entire workspace.
-- **Environment Management**: Robust handling of `.env` files across environments.
-- **VS Code Configuration**: Pre-configured workspace settings, extensions, and snippets.
-
-### 💻 Frontend (Next.js App Router)
-Five distinct Next.js applications tailored for different user journeys:
-- **Admin App** (`apps/admin`): Internal portal for platform administrators.
-- **Portal App** (`apps/portal`): Dashboard for authenticated end-users.
-- **Web App** (`apps/web`): Public-facing marketing website.
-- **Docs App** (`apps/docs`): Public documentation and API references.
-- **Setup App** (`apps/setup`): Initial onboarding and tenant provisioning flow.
-
-### ⚙️ Backend (FastAPI)
-- **FastAPI**: High-performance Python framework.
-- **DDD + Modular Monolith**: Domain-Driven Design principles ensuring scalable and maintainable backend boundaries.
-
-### 📦 Shared Packages
-- **Shared Design System**: Reusable, consistent UI components across all apps.
-- **Tailwind Shared Config**: Unified utility classes and styling tokens.
-- **TypeScript Shared Config**: Strict, consistent type-checking rules.
-- **API Client**: Strongly-typed frontend data fetching client.
-- **Auth SDK**: Reusable authentication logic for all clients.
-
-### 🛠️ Developer Experience & Tooling
-- **ESLint & Prettier**: Automated linting and code formatting.
-- **Husky & Commitlint**: Git hooks ensuring conventional commits.
-- **Changesets**: Versioning and changelog management.
-
-### 🧪 Testing
-- **Vitest**: Blazing fast unit testing for the frontend.
-- **Pytest**: Comprehensive testing for the Python backend.
-
-### 🚀 DevOps & Infrastructure
-- **Docker & Docker Compose**: Containerized environments for consistent local development and production deployments.
-- **GitHub Actions**: Automated CI/CD Pipelines for testing, linting, and deployment.
-- **Infrastructure**: Infrastructure-as-code definitions for cloud provisioning.
-
----
-
-## 📁 Repository Structure
-
-```text
-.
-├── apps/
-│   ├── admin/       # Next.js admin dashboard
-│   ├── api/         # FastAPI backend services
-│   ├── docs/        # Next.js documentation site
-│   ├── portal/      # Next.js user portal
-│   ├── setup/       # Next.js onboarding app
-│   └── web/         # Next.js public website
-├── packages/
-│   ├── api-client/  # Shared API client
-│   ├── auth/        # Auth SDK
-│   ├── config-eslint/
-│   ├── config-tailwind/
-│   ├── config-typescript/
-│   └── ui/          # Shared Design System
-├── infrastructure/  # IaC, Docker, and deployment manifests
-├── docs/            # Architecture Documentation & Roadmaps
-└── scripts/         # Workspace utility scripts
+```sh
+npx create-turbo@latest
 ```
 
----
+## What's inside?
 
-## 📚 Documentation
+This Turborepo includes the following packages/apps:
 
-For an in-depth look at our engineering decisions and project planning, please consult the `docs/` directory:
+### Apps and Packages
 
-- [Constitution & Rules](docs/01_CONSTITUTION.md)
-- [Development Roadmap](docs/04_DEVELOPMENT_ROADMAP.md)
-- [Architecture Decision Records (ADRs)](docs/13_ARCHITECTURE_DECISION_RECORDS.md)
+- `docs`: a [Next.js](https://nextjs.org/) app
+- `web`: another [Next.js](https://nextjs.org/) app
+- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
----
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-## 🚦 Getting Started
+### Utilities
 
-### Prerequisites
-- Node.js (v20+)
-- pnpm (v9+)
-- Python (3.11+)
-- Docker & Docker Compose
+This Turborepo has some additional tools already setup for you:
 
-### Setup
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
 
-1. **Install Dependencies**
-   ```bash
-   pnpm install
-   ```
+### Build
 
-2. **Run Local Development Environment**
-   ```bash
-   pnpm dev
-   ```
+To build all apps and packages, run the following command:
 
-This will spin up all Next.js applications and the FastAPI backend concurrently using Turborepo.
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
 
----
+```sh
+cd my-turborepo
+turbo build
+```
 
-*Built with ❤️ and structured for scale.*
+Without global `turbo`, use your package manager:
+
+```sh
+cd my-turborepo
+npx turbo build
+pnpm dlx turbo build
+pnpm exec turbo build
+```
+
+You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+
+```sh
+turbo build --filter=docs
+```
+
+Without global `turbo`:
+
+```sh
+npx turbo build --filter=docs
+pnpm exec turbo build --filter=docs
+pnpm exec turbo build --filter=docs
+```
+
+### Develop
+
+To develop all apps and packages, run the following command:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+
+```sh
+cd my-turborepo
+turbo dev
+```
+
+Without global `turbo`, use your package manager:
+
+```sh
+cd my-turborepo
+npx turbo dev
+pnpm exec turbo dev
+pnpm exec turbo dev
+```
+
+You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+
+```sh
+turbo dev --filter=web
+```
+
+Without global `turbo`:
+
+```sh
+npx turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+pnpm exec turbo dev --filter=web
+```
+
+### Remote Caching
+
+> [!TIP]
+> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+
+Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+
+By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+
+```sh
+cd my-turborepo
+turbo login
+```
+
+Without global `turbo`, use your package manager:
+
+```sh
+cd my-turborepo
+npx turbo login
+pnpm exec turbo login
+pnpm exec turbo login
+```
+
+This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+
+Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+
+With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+
+```sh
+turbo link
+```
+
+Without global `turbo`:
+
+```sh
+npx turbo link
+pnpm exec turbo link
+pnpm exec turbo link
+```
+
+## Useful Links
+
+Learn more about the power of Turborepo:
+
+- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
+- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
+- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
+- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
+- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
+- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
